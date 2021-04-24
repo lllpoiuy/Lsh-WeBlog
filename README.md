@@ -1,4 +1,4 @@
-# Lsh-WeBlog
+# Welcome, this is Lsh-WeBlog.
 
 我是一名来自 `福州延安中学 / 福建师范大学附属中学` 的一名初三 OIer，立志在信息学的世界中找到自己的意义。
 
