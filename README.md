@@ -4,12 +4,12 @@
 
 ## 文章列表：
 
-** 学习小结：**
+**学习小结：**
 
 [2021.4.11 - 4.17 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.4.11 - 4.17 一周小结) 
 
 [2021.4.18 - 4.14 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.4.18 - 4.24 一周小结) 
 
-** 翻译成果：**
+**翻译成果：**
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
