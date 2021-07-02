@@ -10,6 +10,15 @@
 
 [2021.4.18 - 4.14 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.4.18 - 4.24 一周小结) 
 
+|  2021 省选前集训         |            2021.4             |                                                          |                                                          |
+| :------------------------------------------------------: | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| [Day1.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D1.pdf) | [Day2.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D2.pdf) | [Day3.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D3.pdf) | [Day4.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D4.pdf) |
+| [Day5.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D5.pdf) | [Day6.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D6.pdf) | [Day7.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D7.pdf) | [Day8.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D8.pdf) |
+|                                                          |                                                          |                                                          |                                                          |
+
+
+
+
 **翻译成果：**
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
