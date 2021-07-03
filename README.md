@@ -16,6 +16,17 @@
 | [Day5.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D5.pdf) | [Day6.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D6.pdf) | [Day7.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D7.pdf) | [Day8.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D8.pdf) |
 
 
+
+
+| 杂题选讲                                                     |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [图论杂题选讲](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/图论杂题选讲.html) | [数据结构杂题选讲](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/数据结构杂题选讲.html) | [Codeforces 杂题选讲](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/Codeforces 杂题选讲.html) |
+
+
+
+[图论杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/图论杂题选讲.html) 
+
+
 **翻译成果：**
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
