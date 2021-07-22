@@ -6,22 +6,20 @@
 
 **学习小结：**
 
-[2021.4.11 - 4.17 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.4.11 - 4.17 一周小结) 
+[2021.4.11 - 4.17 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.4.11 - 4.17 一周小结)   [2021.4.18 - 4.24 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.4.18 - 4.24 一周小结) 
 
-[2021.4.18 - 4.24 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.4.18 - 4.24 一周小结) 
-
-|  2021 fjoi         |                   |                                                          |                                                          |
-| :------------------------------------------------------: | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| [Day1.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D1.pdf) | [Day2.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D2.pdf) | [Day3.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D3.pdf) | [Day4.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D4.pdf) |
-| [Day5.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D5.pdf) | [Day6.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D6.pdf) | [Day7.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D7.pdf) | [Day8.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D8.pdf) |
+|                        2021 fjoi                         |                                                          |                                                          |                                                          |                                                          |                                                          |                                                          |                                                          |
+| :------------------------------------------------------: | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| [Day1.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D1.pdf) | [Day2.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D2.pdf) | [Day3.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D3.pdf) | [Day4.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D4.pdf) | [Day5.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D5.pdf) | [Day6.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D6.pdf) | [Day7.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D7.pdf) | [Day8.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/D8.pdf) |
 
 
+| 杂题选讲                                                     |                                                              |                                                              |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [图论杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/图论杂题选讲.html) | [数据结构杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/数据结构杂题选讲.html) | [Codeforces 杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/Codeforces 杂题选讲.html) | [线性代数与多项式](https://lllpoiuy.github.io/Lsh-WeBlog/线性代数与多项式.html) | [不定方程与积性函数](https://lllpoiuy.github.io/Lsh-WeBlog/不定方程与积性函数.html) |
 
-
-| 杂题选讲                                                     |                                                              |                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [图论杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/图论杂题选讲.html) | [数据结构杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/数据结构杂题选讲.html) | [Codeforces 杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/Codeforces 杂题选讲.html) |
-
+| 省队集训                                                     |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [省队集训 2021 简要题解（Day1、2、3）](https://lllpoiuy.github.io/Lsh-WeBlog/省队集训 2021 简要题解（Day1、2、3）.html) | [省队集训 2021 简要题解（Day4、5、6）](https://lllpoiuy.github.io/Lsh-WeBlog/省队集训 2021 简要题解（Day4、5、6）.html) |
 
 **翻译成果：**
 
