@@ -21,6 +21,19 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [省队集训 2021 简要题解（Day1、2、3）](https://lllpoiuy.github.io/Lsh-WeBlog/省队集训 2021 简要题解（Day1、2、3）.html) | [省队集训 2021 简要题解（Day4、5、6）](https://lllpoiuy.github.io/Lsh-WeBlog/省队集训 2021 简要题解（Day4、5、6）.html) |
 
+|                  **校内提高模拟赛题目精选**                  |                                                              |                                                              |                                                              |
+| :----------------------------------------------------------: | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Problem1~5.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/AnoipR/Problem1~5.pdf) | [Problem6~10.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/AnoipR/Problem6~10.pdf) | [Problem11~15.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/AnoipR/Problem11~15.pdf) | [Problem16~20.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/AnoipR/Problem16~20.pdf) |
+
+| **div.1 题目精选**                                           |                                                              |                                                              |      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
+| [Problem1~5.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/div1/Problem1~5.pdf) | [Problem6~10.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/div1/Problem6~10.pdf) | [Problem11~15.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/div1/Problem11~15.pdf) |      |
+
+| **syc2022 （咕咕咕）**                                       |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Day1.html](https://lllpoiuy.github.io/Lsh-WeBlog/syc2022/Day1.html) | [Day2.html](https://lllpoiuy.github.io/Lsh-WeBlog/syc2022/Day2.html) | [Day3.html](https://lllpoiuy.github.io/Lsh-WeBlog/syc2022/Day3.html) |
+
 **翻译成果：**
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
+
