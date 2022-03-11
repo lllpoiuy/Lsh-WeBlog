@@ -39,6 +39,11 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Day1.html](https://lllpoiuy.github.io/Lsh-WeBlog/syc2022/Day1.html) | [Day2.html](https://lllpoiuy.github.io/Lsh-WeBlog/syc2022/Day2.html) | [Day3.html](https://lllpoiuy.github.io/Lsh-WeBlog/syc2022/Day3.html) |
 
+| **nsyc2022 **                                                |                                                              |                                                              |                                                              |                                                              |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Day1](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day1.html) | [Day2](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day2.html) | [Day3~4](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day3~4.html) | [Day5](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day5.html) | [Day6](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day6.html) | [contest1~5](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/nsyc2022/比赛题解合辑.html) | [contest6~10](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/nsyc2022/比赛题解合辑 2.html) |
+
 **翻译成果：**
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
+
