@@ -1,6 +1,6 @@
 # INDEX
 
-| 学习小结：                                              |                                                              |                                                              |                                                              |
+| 学习小结                                              |                                                              |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [2021.4.11 - 4.17 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.4.11 - 4.17 一周小结) | [2021.4.18 - 4.24 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.4.18 - 4.24 一周小结) | [2021.12.6 - 12.12 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.12.6~12.12 一周小结.html) | [2021.12.13 - 12.19 一周小结](https://lllpoiuy.github.io/Lsh-WeBlog/2021.12.13~12.19 一周小结.html) |
 
@@ -9,11 +9,11 @@
 | [Day1](https://lllpoiuy.github.io/Lsh-WeBlog/D1.pdf) | [Day2](https://lllpoiuy.github.io/Lsh-WeBlog/D2.pdf) | [Day3](https://lllpoiuy.github.io/Lsh-WeBlog/D3.pdf) | [Day4](https://lllpoiuy.github.io/Lsh-WeBlog/D4.pdf) | [Day5](https://lllpoiuy.github.io/Lsh-WeBlog/D5.pdf) | [Day6](https://lllpoiuy.github.io/Lsh-WeBlog/D6.pdf) | [Day7](https://lllpoiuy.github.io/Lsh-WeBlog/D7.pdf) | [Day8](https://lllpoiuy.github.io/Lsh-WeBlog/D8.pdf) |
 
 
-| 杂题选讲：                                                     |                                                              |                                                              |                                                              |                                                              |
+| 杂题选讲                                                     |                                                              |                                                              |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [图论杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/图论杂题选讲.html) | [数据结构杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/数据结构杂题选讲.html) | [Codeforces 杂题选讲](https://lllpoiuy.github.io/Lsh-WeBlog/Codeforces 杂题选讲.html) | [线性代数与多项式](https://lllpoiuy.github.io/Lsh-WeBlog/线性代数与多项式.html) | [不定方程与积性函数](https://lllpoiuy.github.io/Lsh-WeBlog/不定方程与积性函数.html) |
 
-| 省队集训：                                                     |                                                              |
+| 省队集训                                                     |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [省队集训 2021 简要题解（Day1、2、3）](https://lllpoiuy.github.io/Lsh-WeBlog/省队集训 2021 简要题解（Day1、2、3）.html) | [省队集训 2021 简要题解（Day4、5、6）](https://lllpoiuy.github.io/Lsh-WeBlog/省队集训 2021 简要题解（Day4、5、6）.html) |
 
@@ -29,7 +29,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Day1](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day1.html) | [Day2](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day2.html) | [Day3~4](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day3~4.html) | [Day5](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/Day5.html) | [Day6](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/Day6.html) | [contest1~5](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/nsyc2022/比赛题解合辑.html) | [contest6~10](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/nsyc2022/比赛题解合辑 2.html) |
 
-**翻译成果：**
+### 翻译成果：
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
 
