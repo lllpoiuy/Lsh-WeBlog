@@ -29,9 +29,6 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Day1](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day1.html) | [Day2](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day2.html) | [Day3~4](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day3~4.html) | [Day5](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/Day5.html) | [Day6](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/Day6.html) | [contest1~5](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/nsyc2022/比赛题解合辑.html) | [contest6~10](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/nsyc2022/比赛题解合辑 2.html) |
 
-| nflsoj                                                       |                                                              |                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [JSOI 模拟赛题解合辑 1](https://lllpoiuy.github.io/Lsh-WeBlog/nflsoj/id0.html) | [JSOI 模拟赛题解合辑 2](https://lllpoiuy.github.io/Lsh-WeBlog/nflsoj/id1.html) | [JSOI 模拟赛题解合辑 3](https://lllpoiuy.github.io/Lsh-WeBlog/nflsoj/id2.html) |
 
 ### 翻译成果：
 
