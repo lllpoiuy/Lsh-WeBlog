@@ -29,8 +29,14 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Day1](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day1.html) | [Day2](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day2.html) | [Day3~4](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day3~4.html) | [Day5](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/Day5.html) | [Day6](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/Day6.html) | [contest1~5](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/nsyc2022/比赛题解合辑.html) | [contest6~10](https://github.com/lllpoiuy/Lsh-WeBlog/blob/main/nsyc2022/比赛题解合辑 2.html) |
 
+| JGR & YAIU                                                   |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [JGELR #1 非官方营业日志.html](https://lllpoiuy.github.io/Lsh-WeBlog/JGR/JGELR %231 非官方营业日志.html) | [YAIU 非官方营业日志（1、2、3）.html](https://lllpoiuy.github.io/Lsh-WeBlog/JGR/YAIU 非官方营业日志（1、2、3）.html) | [YAIU 非官方营业日志（P4）.html](https://lllpoiuy.github.io/Lsh-WeBlog/JGR/YAIU 非官方营业日志（P4）.html) |
+
+| AfterAPIO2022                                                |                                                              |                                                              |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [id0.html](https://lllpoiuy.github.io/Lsh-WeBlog/afterAPIO/id0.html) | [id1.html](https://lllpoiuy.github.io/Lsh-WeBlog/afterAPIO/id1.html) | [id2.html](https://lllpoiuy.github.io/Lsh-WeBlog/afterAPIO/id2.html) | [id3.html](https://lllpoiuy.github.io/Lsh-WeBlog/afterAPIO/id3.html) | [id4.html](https://lllpoiuy.github.io/Lsh-WeBlog/afterAPIO/id4.html) |
 
 ### 翻译成果：
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
-
