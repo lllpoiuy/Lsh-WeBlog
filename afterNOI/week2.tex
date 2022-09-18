@@ -1,0 +1,535 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{CJKfntef}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{amsmath,amssymb}
+\usepackage{tabu}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=green,bookmarks=true]{hyperref}
+%\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{bookmark}
+\usepackage{inconsolata}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{paralist}
+\setlength{\parindent}{2em}
+\geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
+\setcounter{secnumdepth}{0}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{xcolor}
+\usepackage{endnotes}
+\usepackage{multirow}
+\usepackage{notoccite}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}                   
+\usepackage{CJKfntef}        
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{black}
+		\textbf
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\newcommand{\stress}[1]{\textbf{\CJKunderdot{#1}}}
+
+\definecolor{mys}{rgb}{1,0.2,0}%一个颜色
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\lstset{
+	numberstyle=\ttfamily\color{codegray}
+}
+
+\linespread{1.5}%修改行距
+
+% \titleformat{\subsection}{\fontsize{13}{16}}
+
+% \begin{lstlisting}
+	% \end{lstlisting}
+
+%%%my packages
+\usepackage{hyperref}% Links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mys,
+	urlcolor=blue
+}
+% \usepackage{pseudo}% Pseudo Code
+
+\title{标题（无实际意义）}
+\author{作者（无实际意义）}
+\date{日期时间（无实际意义）}
+
+\begin{document}
+	\fontsize{12pt}{12pt}\selectfont
+	
+	\newpage
+	\pagestyle{fancy}
+	\lhead{\footnotesize \songti{信息学一周解题报告汇总\ \ \ -LSH}}
+	\cfoot{\footnotesize 第 \thepage \ 页\qquad  共  \pageref{LastPage} 页}
+	
+	\phantomsection
+	\addcontentsline{toc}{section}{}
+	\rhead{\footnotesize \songti{第二周\ \ \ 2022.9.12 $\sim$ 2022.9.18}}
+	
+	
+	\section*{【UR20】机器蚤分组}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/608。
+	
+	给定字符串 $S$，$q$ 次询问一个子串 $[l,r]$ 的所有子串至少需要分成多少组，使得每组满足：设组内元素为 $a_{1\sim m}$，则 $a_1$ 是 $a_2$ 的子串、$a_2$ 是 $a_3$ 的子串……。
+	
+	$n,q\le 10^5$。
+	
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先，我们把每个子串当作是一个结点，包含的关系当作有向边，则我们所求则为此 DAG 的最小链覆盖。我们改为求其最长反链。
+	
+	根据直觉，最长反链内的结点应该有着相同的长度——若长度不同，则可以把反链内最短的结点 $s_{min}$ 变长一，判断合法性的话只要看看 $s_{min}'$ 是否包含了其它和 $s_{min}$ 长度相等的子串即可，因为其它的串不能包含 $s_{min}$ 也就不能包含 $s_{min}'$；若它不能像左延伸，则说明它顶着左端点或者它左右端点各左移一位得到的串也在反链内，右延伸亦然——也就说明，若不存在一个最短的串可以延伸，则 $[l,l+min),[l+1,l+min+1),\cdots$ 都在反链内，于是所有的反链内的元素长度相等。
+	
+	按照长度给 DAG 分层，先考虑第一层，有 $1$ 个点，第二层，有 $2$ 个点，第三层，有 $3$ 个点，比如在这一层内出现了两个结点 $u$ 和 $v$ 相同，那么这一层的反链长度为 $2$，注意到之后的层的反链长度都不再可能超过这一层，因为 $u$ 点内部的结点都已经无用，而 $u$ 点的长度为 $n-3+1$，那么不被 $u$ 包含的长度相同的子串数量最多也就为 $2$！
+	
+	所以我们只要找到子串内最长的有出现两次的子串的长度即可，也即 $\max_{i,j} \operatorname{LCP}\left( S[i,r],S_{j,r} \right)$，经典 SAM 套 lct 套线段树即可（题解中指出，这和线段树上启发式合并找到 $O(n\log_2n)$ 个相邻 Endpos 是等价的）。
+	
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/583210（40 分钟三棵树）。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1556G】Gates to Another World}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1556G。
+	
+	有 $2^n$ 个点，编号为 $i,j$ 的点之间有无向边当且仅当 $\mathrm{popcount}(i \oplus j)=1$。  
+	
+	有 $m$ 次操作，每次询问 $a,b$ 是否能互相到达，或者删除编号在 $[l,r]$ 之间的所有点。  
+	
+	- $n \le 50,m \le 5 \times 10^4$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	若试图把图建出来，则可以发现图大致构成一个线段树的样子。
+	
+	若我们显式地把这个动态开点线段树建出来，则未被删除的点代表的区间内的所有数一定是连通的（即前若干位相同，后若干位可以任意交换）；对于这些点之间的连边，枚举相连的两个点的 LCA，两个点能相连当且仅当它们处于这个子树的相同位置。所有可能的连边只有 $n^2m$ 条。
+	
+	考虑时间反演后用并查集维护，求出每个点加入线段树的最晚时间，每条边的加入时间为两端点取个 $\max$ 即可。$O(n^2m\alpha(nm))$。	
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://codeforces.com/contest/1556/submission/172199774。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1495F】Squares}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1495F。
+	
+	给定 $p_{1\sim n},a_{1\sim n},b_{1\sim n}$，初始时在点 $s$，每次可以花费 $a_i$ 的代价跳到点 $i+1$，或者花费 $b_i$ 的代价跳到 $\min\{j|j>i,p_j>p_i\}$，$q$ 次询问 $s$ 到 $t$ 间的最短路。
+	
+	$n,q\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	这题有别于【CF1523H】Hopping Around the Array（一个点的可达集始终是一个区间），这题不适合倍增。
+	
+	但是这题的子结构满足一个特别好的性质：边之间要么包含要么不交——我们可以从右向左扫描每个 $s$，记录下对每个 $t$ 的最短路，那么 $s$ 左移一位（不考虑 $b_i$）相当于整体加 $a_i$；当考虑上 $b_i$ 时，容易发现对于每个 $k>to_i$，要想到达 $k$，都必须到达 $to_i$（$to_i$ 支配 $k$），那么我们可以对 $to_i$ 后面的 $t$ 整体减去一个数。
+	
+	树状数组维护即可做到 $O(n\log_2n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/86811793。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1704E】Count Seconds}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1704E。
+	
+	Cirno 有一个有向无环图，该图有 $n$ 个点和 $m$ 条边，其中有且仅有一个点没有出边。对于所有 $i\in[1,n]$，第 $i$ 个点有一个整数 $a_i$。
+	
+	每秒钟都会发生以下事件：
+	
+	+ 令点集 $S=\{x|a_x>0\}$ 。
+	
+	+ 对于每个点 $x\in S$，$a_x$ 都会自减 $1$，然后对于每个与 $x$ 连着有向边 $x\rightarrow y$ 的点 $y$，$a_y$ 自增 $1$。
+	
+	请求出所有的 $a_i$ 都变成 $0$ 的最早时刻，在模 $998\ 244\ 353$ 的意义下。$n,m\le 1000$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	因为流入是源源不断直到用完的，所以不妨视作 $t$ 时刻流入 $u$ 的流量，直接全部在 $t+1$ 时刻流入 $v$；最后在唯一的无出度点上统计一遍答案即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://codeforces.com/contest/1704/submission/172149561。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{「Wdoi-2」纯粹的复仇女神}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P8543。
+	
+	给定一个长度为 $n$ 的序列，序列中每个元素是一个二元组 $(c_i,a_i)$，分别表示颜色与权值。
+	
+	现在有 $q$ 次询问，每次给出一个区间 $[l,r]$，求：
+	
+	$$\max\limits_{k=1}^n \left\{\min\limits_{l\le i \le r,c_i=k} a_i\right\}$$
+	
+	特别地，如果 $[l,r]$ 内没有颜色为 $k$ 的值，后面的部分定义为 $0$。$n,m\le 2.5\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	对每种颜色求出笛卡尔树，找到每个 $i$ 贡献的范围是 $l\in(pl_i,i],r\in[i,pr_i)$，这就变成了一个二维偏序问题，对 $l$ 扫描线并对 $r$ 建线段树套堆即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/86624884。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1031E】Triple Flips}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1031E。
+	
+	给你一个长度为 $n$ 的数组，包含 $0,1$，
+	
+	你可以执行若干次操作：选择三个位 置 $x,y,z$，满足 $1\le x<y<z\le n,y-x=z-y$，将这三个位置上的数取反（$0$ 变成 $1$，$1$ 变成 $0$）。
+	
+	若存在方案使每一位都为 $0$ 且操作次数不超过 $(\lfloor \frac{n}{3} \rfloor + 12)$，第一行输出 $YES$，输出方案。若无解，输出 $NO$。$3\le n\le 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	我们三位三位从左到右考虑，若当前三位都为 $0$，好办；有一个 $1$，好办，随便将其转移到右边去；有三个 $1$，直接内部消掉；若有两个 $1$，则需要尝试和右边的那个区间一起用两步消掉，多讨论几种情况发现也是可以的。最后可能会剩下几个位置转移不了，状压 dp 一下就好了。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://codeforces.com/contest/1031/submission/172110747。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1305F】Kuroni and the Punishment}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1305F。
+	
+	给定 $n$ 个数。每次可以选择将一个数 $+1$ 或 $-1$ 。求至少多少次操作使得整个序列都是正数且全部元素的 $\gcd>1$ 。
+	
+	$n\leq 2\times10^5,a_i\leq 10^{12}$ 。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先令 $\gcd = 2$，得答案小于等于 $n$。我们可以在均摊近似 $O(1)$ 的复杂度下 check 一个 $\gcd = P$ 能否成为答案，现在我们的任务是找到所有可能的 P。
+	
+	第一种办法是，先 check $a_1+1,a_1+2,\cdots,a_1+n-1$，然后对 $a_1$ 整除分块，check 所有 $a_1 \bmod p \in [0,n)\in (P-n,P]$ 的 $P$，这玩意把式子写出来会发现量级是 $n\ln n+\sqrt{p}$ 左右的。
+	
+	第二种办法是，至少存在一半的数只变化了不到 $1$，随机选 $60$ 个，并枚举加减 $1$，再枚举其因数即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/86584866。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【POI2011】OKR-Periodicity}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P3526。
+	
+	给定一个字符串 $S$，其长度为 $N$。定义 $\textrm{Per}(S)$ 为 $S$ 的所有周期的集合。
+	
+	多组数据，每次给一个 $S$，要求你构造一个 $01$ 串使得其 $\textrm{Per}$ 集合与 $S$ 相同。如果有多种答案，输出字典序最小的一种。
+	
+	$T \leq 20$，$|S| \leq 2 \times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	这题给出了一个很强的结论：对于任意字符串，都存在一个 01 串使得其 $\textrm{Per}$ 集合相同。
+	
+	当原串的 $\textrm{Per}$ 集合为空：构造 0000...001。
+	
+	当原串的 $\textrm{Per}$ 为全集，构造 0000...000。
+	
+	当原串的最长 Border 不到一半长度：递归进 border 里构造，中间的部分填上全 0 或者 0000...001，分别 check 一下。
+	
+	当原串的 Border 长于一半，则原串可以被表示为 AAAA...AAB，其中 B 是 A 的一个前缀，递归进 AB 里构造，把 AB 构造出来的解 PQ 改造为 PPPP...PPQ 即可。
+	
+	复杂度 $O(n\log_2n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/86507176。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1270H】Number of Components}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1270H。
+	
+	给一个长度为 $n$ 的数组 $a$，$a$ 中的元素两两不同。
+	
+	对于每个数对 $(i,j)(i<j)$，若 $a_i<a_j$，则让 $i$ 向 $j$ 连一条边。求图中连通块个数。
+	
+	支持 $q$ 次修改数组某个位置的值，每次修改后输出图中连通块个数。
+	
+	$n,q\le 5\times 10^5,1\le a_i\le 10^6$，保证任意时刻数组中元素两两不同。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	手玩一下可以发现，图构成的连通块一定形如：$a_{1\sim A} | b_{1\sim B} | c_{1\sim C} | \cdots$，$\min A>\max B, \min B>\max C, \cdots$。我们相当于就是要数 $i$ 的个数，使得 $\min a_{1\sim i}>\max a_{i+1\sim n}$。
+	
+	利用线段树分治套 fhq/splay 可以很板子地完成；作为一个单调栈形状（但不完全是单调栈）的东西，用兔队线段树也可以维护。
+	
+	优化：视 $a_0=\infty,a_{n+1}=0$，考虑改为数 $f$ 的数量，满足 $a_i\le f$ 且 $a_i+1<f$ 的位置只有一个，并且 $f$ 在 $a$ 中出现过。这个用线段树就能在线维护了。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://codeforces.com/contest/1270/submission/171768792。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1270E】Divide Points}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1270E。
+	
+	给你 $n$ 个点和它们的坐标，现在给它们两两连上边，如果在同一组为黄色，不同组为蓝色。现在让你给出任意一种分组方案，使得所有长度相同的边颜色相同。
+	
+	$n\le 10^3$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	把点奇偶分组即可。但是一种情况是点全部是奇数或者点全部是偶数，我们可以令 $x'\leftarrow \frac{x+y}2,y'\leftarrow \frac{x-y}/2$ 然后递归下去染色。$O(n\log_2n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://codeforces.com/contest/1270/submission/171767489。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【UER6】逃跑}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/211。
+	
+	妹滋滋在平面上随机游走，每次分别以 $w_1,w_2,w_3,w_4$（和为 $1$）的概率向四个方向走一步，问他 $n$ 天走过的不同位置数量的方差是多少。
+	
+	$n\le 100$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	也就是要求 $E^2\left(x\right)-E\left(x^2\right)$。
+	
+	对于 $E(x)$，考虑\textbf{第一次到达某个位置}的次数的期望，设 $f_{t,i,j}$ 表示 $i$ 秒凑了变化量 $(i,j)$ 的概率，$g_{t,i,j}$ 表示 $t$ 秒后第一次到达 $(i,j)$ 的概率，那么有：
+	
+	$$
+	g_{t,i,j}=f_{t,i,j}-\sum_{k=0}^{t-1} g_{k,i,j}\cdot f_{t-k,0,0}
+	$$
+	
+	对于 $E\left(x^2\right)$，我们将其的二次项看作是 $\binom{x}{2}$；记 $h_{t,i,j}$ 表示 $t$ 秒，第一次走到某个格子，然后走了变化量 $(i,j)$，又新走到了某个格子的总数除以概率；记 $G_{t}=\sum_{i,j}g_{t,i,j}$，有：
+	
+	$$
+	h_{t,i,j}=\sum_{k=0}^{t-1} G_{k}\cdot g_{t-k,i,j} - h_{k,-i,-j}\cdot f_{t-k,i,j}
+	$$
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/582416。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【IOI2018】高速公路收费}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/409。
+	
+	给定一张无向图，你需要猜一对点 $s,t$，每次可以询问，你可以给每条边赋上 $A$ 或者 $B$ 的边权（$A\neq B$），交互库会返回此时 $s$ 到 $t$ 的最短路长度。
+	
+	$n\le 9\times 10^4,m\le 1.3\times 10^5$，限制询问 $50$ 次。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	可以二分一个边集的前缀设为 $B$，找到一条一定在最短路上的边。自边的两端点分别 bfs 并存下 bfs 序，那么 $s$ 一定在 $dis_1<dis_2$ 的点中，$t$ 一定在 $dis_1>dis_2$ 的点中，分别在这两个 bfs 序下进行二分，每次将一个后缀里的点的所有相邻的边改为 $B$（相当于禁止进入这个点），就能找到 s 和 t 在 bfs 序上的位置。
+		
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/582407。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【ARC133E】Cyclic Medians}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://atcoder.jp/contests/arc133/tasks/arc133\_e。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【ARC133F】Random Transition}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://atcoder.jp/contests/arc133/tasks/arc133\_f。
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
