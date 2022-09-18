@@ -1,5 +1,10 @@
 # INDEX
 
+| before_NOI_2023：                                            |
+| ------------------------------------------------------------ |
+| [信息学一周解题报告汇总 -第一周 2022.9.5 ∼ 2022.9.11](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week1.pdf) |
+| [信息学一周解题报告汇总 -第一周 2022.9.12 ∼ 2022.9.18](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week2.pdf) |
+
 | nsyc2022                                                     |                                                              |                                                              |                                                              |                                                              |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Day1](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day1.html) | [Day2](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day2.html) | [Day3~4](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/day3~4.html) | [Day5](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/Day5.html) | [Day6](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/Day6.html) | [contest1~5](https://lllpoiuy.github.io/Lsh-WeBlog/nsyc2022/比赛题解合辑.html) | [contest6~10](https://lllpoiuy.github.io/Lsh-WeBlog/main/nsyc2022/比赛题解合辑 2.html) |
@@ -41,4 +46,3 @@
 ### 翻译成果：
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
-
