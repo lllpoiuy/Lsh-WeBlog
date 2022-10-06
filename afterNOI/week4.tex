@@ -1,0 +1,511 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{CJKfntef}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{amsmath,amssymb}
+\usepackage{tabu}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=green,bookmarks=true]{hyperref}
+%\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{bookmark}
+\usepackage{inconsolata}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage[ruled,linesnumbered]{Algorithm2e}
+\setlength{\parindent}{2em}
+\geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
+\setcounter{secnumdepth}{0}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{xcolor}
+\usepackage{endnotes}
+\usepackage{multirow}
+\usepackage{notoccite}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}                   
+\usepackage{CJKfntef}        
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{black}
+		\textbf
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\newcommand{\stress}[1]{\textbf{\CJKunderdot{#1}}}
+
+\definecolor{mys}{rgb}{1,0.2,0}%一个颜色
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\lstset{
+	numberstyle=\ttfamily\color{codegray}
+}
+
+\linespread{1.5}%修改行距
+
+% \titleformat{\subsection}{\fontsize{13}{16}}
+
+% \begin{lstlisting}
+	% \end{lstlisting}
+
+%%%my packages
+\usepackage{hyperref}% Links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mys,
+	urlcolor=blue
+}
+% \usepackage{pseudo}% Pseudo Code
+
+\title{标题（无实际意义）}
+\author{作者（无实际意义）}
+\date{日期时间（无实际意义）}
+
+\begin{document}
+	\fontsize{12pt}{12pt}\selectfont
+	
+	\newpage
+	\pagestyle{fancy}
+	\lhead{\footnotesize \songti{信息学一周解题报告汇总\ \ \ -LSH}}
+	\cfoot{\footnotesize 第 \thepage \ 页\qquad  共  \pageref{LastPage} 页}
+	
+	\phantomsection
+	\addcontentsline{toc}{section}{}
+	\rhead{\footnotesize \songti{第四周\ \ \ 2022.9.26 $\sim$ 2022.10.2}}
+	
+	行百里者半九十。
+	
+	
+	\section*{【CF1696G】Fishingprince Plays With Array Again}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1696G。
+	
+	定义关于两个参数 $X$，$Y$ 的对于序列 $a$ 的函数 $f(a)$：
+	
+	你可以对序列从 $1$ 开始长度为 $n$ 的 $a$ 进行以下两种操作：（$t$ 可以是小数）
+	
+	\begin{itemize}
+		\item 在位置 $i\ (1\le i<n)$ 花费 $t$ 秒，使 $a_i\gets a_i-Xt,a_{i+1}\gets a_{i+1}-Yt$。
+		\item 在位置 $i\ (1\le i<n)$ 花费 $t$ 秒，使 $a_i\gets a_i-Yt,a_{i+1}\gets a_{i+1}-Xt$。
+	\end{itemize}
+	
+	$f(a)$ 为通过上述两个操作使得 $a$ 序列中所有元素小于等于 $0$ 所需要花费的最小时间。给定参数 $X$，$Y$ 与序列 $a$，每次进行下列两个操作中的一个：
+	
+	\begin{itemize}
+		\item `1 k v` 将 $a_k$ 变为 $v$。
+		\item `2 l r` 将 $a$ 序列中 $[l,r]$ 区间范围内的元素以原顺序取出作为序列 $b$，求 $f(b)$。
+	\end{itemize}
+
+	$n,q\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	设 $b_i$ 和 $c_i$ 表示 $i$ 位置处进行的两种操作的次数，那么可以列出其线性规划形式：
+	
+	$$
+	\left\{
+	\begin{aligned}
+		&\operatorname{minimize} \sum b_i+\sum c_i\\
+		&\forall i, Xb_{i-1}+Yb_i+Xc_i+Yc_{i-1}\ge a_i
+	\end{aligned}
+	\right.
+	$$
+	
+	将其对偶，可以得到：
+	
+	$$
+	\left\{
+	\begin{aligned}
+		&\operatorname{maximize} \sum d_i\cdot a_i\\
+		&\forall i, Xd_{i-1}+Yd_i\le 1\\
+		&\forall i, Yd_{i-1}+Xd_i\le 1\\
+	\end{aligned}
+	\right.
+	$$
+	
+	由于线性规划的性质可以得出，$d$ 要么是 $0$，要么是 $\frac 1{X+Y}$，要么是 $1+\frac 1{\max(X,Y)}$，线段树维护矩阵连乘积即可。
+	
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87864174。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1276F】Asterisk Substrings}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1276F。
+	
+	给定一个字符集为小写字母的长度为 $n$ 的字符串 $s$，设 $t_i$ 表示将 $s$ 中的第 $i$ 个字符替换为特殊字符 $\text{*}$ 时得到的字符串，比如当 $s=\text{abc}$ 时，$t_1=\text{*bc}$，$t_2 = \text{a*c}$，$t_3 = \text{ab*}$。
+	
+	求字符串集合 $\{s,t_1,t_2,t_3,...,t_n\}$ 中本质不同的子串个数（需要计算空串）。
+	
+	注意 $\text{*}$ 仅表示一个字符，不表示其他含义（如通配符）。$|s|\le 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	我们考虑有经过 * 的子串种类数量，设 $f(S,T)$ 表示 S*T 能否达到，不难发现 S 和 T 可以用后缀树或者前缀树上的结点来代替，那么 $f$ 的定义域大小就是 $n^2$ 级别的。
+	
+	枚举 * 的位置，每次相当于把后缀树和前缀树上分别的一条到根的路径上的点 $(u,v)$ 两两之间的 $f(u,v)$ 设为 $1$；我们最后就是要统计 $1$ 的个数。
+	
+	每个前缀树上的点，可以和它匹配的一定是一个后缀树的包含根的连通子树；我们考虑用启发式合并来维护这些子树的边权和——用 set 维护点集的 dfn 序，即可求出所有边的边权和。总复杂度 $O(n\log^2n)$。
+	
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87885905。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{P5115 Check,Check,Check one two!}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P5115。
+	
+	现在给定一个长度为 $n\le 10^5$ 的字符串，希望您求出
+	
+	$$\sum_{1\leq i < j \leq n}lcp(i,j)lcs(i,j)[lcp(i,j)\leq k_1][lcs(i,j) \leq k_2]$$
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先先转化到两棵树上为树上 lca 相关的问题。
+	
+	一种比较勇猛的做法是，设一条边的权值为：当两端的深度都小于等于 $k$ 时，权值为边长；当一端深度小于等于 $k$ 时，边权为 $\min(dep_u,dep_v)$；否则边权为 $0$。
+	
+	对于每个 $1$ 树上的点 $u$，求出它子树内的点对在第二棵树上的贡献和，乘上 $(u,fa_u)$ 的边权贡献进答案。在第二棵树上可以用全局平衡二叉树快速维护加点删点求总贡献，第一棵树上进行一个配套的 dsu on tree 即可。$O(n\log^2n)$。
+	
+	实际上有 $26n$ 做法，大概是考虑 $[j-lcs,j+lcp]$ 和 $i-lcs,i+lcp$ 是一样的，所以不妨考虑某个后缀树上的结点 $T$ 的贡献。时代变了啊！
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87938469。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1060G】Balls and Pockets}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1060G。
+	
+	给出一个无限长的序列 $p_0,p_1,p_2,\ldots$，初始 $p_i=i$。
+	
+	给出 $n$ 个互不相同的整数 $a_1,a_2,\ldots,a_n$，可以对序列 $p$ 做以下操作若干次：将序列 $p$ 的第 $a_1,a_2,\ldots,a_n$ 项从序列 $p$ 中删掉，然后将剩余的数字按照原来在序列 $p$ 中的顺序重新排列作为新的序列 $p$。
+	
+	给出 $m$ 组询问，每组询问给出两个整数 $x,k$，询问进行 $k$ 次操作后的序列 $p$ 中 $p_x$ 的值。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	这个变化过程非常复杂，我没有办法发现足够理想的性质，于是就得从比较生猛的维护去考虑。
+	
+	手玩足够的数据，并将每次删除的映射画出来看看，考虑这么求一个询问的答案，令 $f(x)=x+\sum_{i}[a_i-i+1\le x]$，那答案就是 $f^{(k)}(x)$。
+	
+	离线下来处理，从左到右维护每个 $x$ 右移的过程，对于 $x\in[a_i-i+1,a_i]$ 的 $x$ 都可以一起处理，因为它们的增量是比较统一的。分成两种情况考虑：
+	
+	\begin{itemize}
+		\item 对于 $a_i\ge a_{i+1}-i$，那么 $[a_i-i+1,a_{i+1}-i]$ 间的询问都会加上 $i$，然后整体过度到 $a_{i+1}-i,a_{i+1}$ 的处理范畴内。
+		\item 对于 $a_i<a_{i+1}-i$，一定可以分成两段，左边这段增加了 $(k+1)i$，右边这段增加了 $ki$，然后左边的这段跑到了右边的这段的右边。
+	\end{itemize}
+
+	我们拿一个平衡树维护这个过程，并维护子树剩余步数最小值，和坐标的整体平移；每当有剩余步数小于 $0$ 时，我们就在平衡树上找到哪个点，并计算它的答案。复杂度 $O(n\log_2n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/88269582。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{P8056 C 图上的数}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P8056。
+	
+	给定一个 $n$ 个点 $m$ 条边的无向图（保证无重边无自环但不保证连通），每条边有一个 $1\sim m$ 的互不相同的编号。
+	
+	定义一条边是孤边，当且仅当它的两端点均已经被删除。
+	
+	您需要给定一个删点顺序，令 $P_i$ 表示第 $i$ 条变成孤边的边的编号，您需要最小化 $P_i$ 的字典序。
+	
+	若某一时刻存在多条边变为孤边，我们认为，编号小的边先变为孤边。$n,m\le 10^6$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	将边划分为 $0\sim 2$ 度三种。考虑贪心，每次的比较优的选择有两种：
+	
+	\begin{itemize}
+		\item [1.] 选择一个点删掉，这个点对应的 $1$ 度的边的编号要被最小化。
+		\item [2.] 选择一条 $2$ 度的边，删去它对应的两个点。
+	\end{itemize}
+
+	有了这个大方向，我们来考虑一些细节问题：
+	
+	\begin{itemize}
+		\item 每次我们应该在两个操作中选一个比较小的进行。
+		\item 若现在决定进行的 $2$ 操作的两个端点都没有相邻的 $1$ 度边，则可以以任意顺序删去这两点；存在一个端点有相邻的 $1$ 度边，则先把那个空着的给删了，然后把另一个删了；若两个端点都有相邻的 $1$ 度边，那么忽略这条边，因为两端点的决策都会被第一种贪心策略涵盖。
+		\item 在某次删点操作中，它会删去所有和它相邻的 $1$ 度边；但如果有这么一条 $2$ 度边，它的另一个端点没有任何一条相邻的 $1$ 度边，并且它插入后有利于缩小字典序，那么我们也顺便把这条边删掉，也把那个点删掉。
+	\end{itemize}
+
+	讲真我觉得这个正确性好感性啊，但是又想不出很好的证明。$O(n\log_2n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/88386505。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【UR 19】通用测评号}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/514。
+	
+	有 $n$ 个容量为 $a$ 的燃料箱，每次随机选择一个没有满的燃料箱，将其内的燃料量加一，直到每个燃料箱的燃料量都大于等于 $b$ 为止，问最后满的燃料箱的数量的期望。$n,a,b\le 250$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	显然存在一个燃料箱，它会被填充恰好 $b$ 次，且最后一次填充的是它；不妨假设这就是燃料箱 $1$，它的作用是 $b-1$ 次操作会被排列进其它燃料箱的填充序列里；而其它燃料箱彼此之间相对独立。
+	
+	一个错误的想法是，用二元生成函数，多加一维 $y$ 表示满的燃料箱，将 $y$ 带入 $1+y$，$na^2$ 多项式快速幂即可，最后的 $0$ 次项是总数，$1$ 次项的贡献和，贡献和除以总数得出期望。
+	
+	但是事实上，每种方案的概率不是均等的！只能通过概率乘以贡献的方式来算期望。
+	
+	注意到一开始的概率都是 $\frac 1{n}$，随后每填满一个燃料箱，概率就变成 $\frac 1{n-1},\frac 1{n-2},\cdots$。我们进行一个 dp，设 $f_{i,j}$ 表示前 $i$ 个操作，填满了 $j$ 个燃料箱，的对应方案，要乘上的概率的大小的和：
+	
+	$$
+	\begin{aligned}
+		&f_{i,j}\cdot \frac 1{n-j} \rightarrow f_{i+1,j} \\
+		&f_{i,j}\cdot \frac 1{n-j}\cdot (n-j-1)\cdot \binom{i-ja}{b-1} f_{i+1,j+1}
+	\end{aligned}
+	$$
+	
+	而其它没有满的燃料箱的贡献，可以通过 EGF 累乘来计算。复杂度 $O(n^2a\log(na))$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/585682。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【UR 17】滑稽树前做游戏}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/372。
+	
+	$x_1,x_2,...,x_n$ 为 $n$ 个独立随机变量，且均服从 $[0,1]$ 上的均匀分布。给出 $m$ 对关系 $(a_i,b_i)$，令 $f(x)=\max\left(\max_{i=1}^n x_i,\max^m_{i=1}\left(x_{a_i}+x_{b_i}\right)\right)$，求 $f(x)$ 的期望。
+	
+	$n\le 30$，对 $998244353$ 取模。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先，期望转为 $2-\int dx \cdot $ 小于等于 $x$ 的概率。设 $f(G,y,t)$ 表示，图 $G$ 上，每个点的权值都要小于等于 $y$，且任意两点的和都小于等于 $t$ 的概率。此处要求 $y\in[\frac t2,t]$。
+	
+	分类讨论：若所有的点的权值都小于 $\frac t2$，那么一定都合法；若存在点的权值大于等于 $\frac t2$，则我们枚举其最大值取的点 $u$，那么对于任意一个和 $u$ 相邻的点 $v$，$x_v\le t-x_u$；可以发现这些点 $v$ 被删除后，答案不变。设这张图被删去 $u$ 和 $\{v\}$ 后分裂成了连通子图 $G_{u,1\sim k}$，有：
+	
+	$$
+	f_{G,y,t}=\left(\frac t2\right)^{|G|}+\sum_{u\in G}{\int_{x=\frac t2}^y dx\cdot (t-x)^{|\{v\}|}\cdot\prod f\left(G_{u,i},x,t\right)}
+	$$
+	
+	注意到 $f$ 是一个关于 $y$ 和 $t$ 的 $|G|$ 次齐次多项式，并且这个 $t$ 可以当作常数，只有 $y$ 一直参与积分运算。我们把这个 dp 递归地进行下去并记忆化（不需要考虑图同构），那么这个玩意的复杂度就相当正确！
+	
+	最后只要对 $f(G,\min(t,1),t)dt$ 积分即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/585272。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【UR 17】滑稽树上滑稽果}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/370。
+	
+	他有 $n$ 个滑稽果，第 $i$ 个滑稽果的大小为 $a_i$。
+	
+	他现在想把它们构成一棵任意形态的有根树，每个点的滑稽度为它的大小和它父亲的滑稽度的 $\operatorname{and}$。特别地，根的滑稽度等于他的大小。
+	
+	为了世界的和平，他希望能最小化这棵树上所有滑稽果的滑稽度之和。$n\le 10^5,a_i\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	注意到字典序最小的结论是错误的（否则也不会出现在部分分里）。注意到每个数的贡献最多在 $w$ 轮后就会收敛到所有数的交集。设 $f_S$ 表示 $S$ 前 $i$ 个数的 $\operatorname{and}$ 为 $S$ 的最小代价。那么可以 $3^w$ dp，也即 $a_i^{\log_23}$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/585117。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【2020-2021 Summer Petrozavodsk Camp, Day 6: Korean Contest】Oneness}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://codeforces.com/gym/102155/problem/E。
+	
+	给定一个随机产生的高精度数 $x\le 10^{2.5\times 10^5}$，求：
+	
+	$$\sum_{i=1}\left\lfloor\frac x{1111...1(i\ 1s)}\right\rfloor$$
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先求出：
+	
+	$$\sum_{i=1}\frac x{1111...1(i\ 1s)}$$
+	
+	以调和级数的复杂度求出 $\sum_{i=1}\frac 1{1111...1(i\ 1s)}$，然后 NTT 即可。然后要减去：
+	
+	$$
+	\sum_{i=1}\left\{\frac x{1111...1(i\ 1s)}\right\}
+	$$
+	
+	注意到：
+	
+	$$
+	\left\{\frac x{1111...1(i\ 1s)}\right\}=\left\{\sum_{j=1} \left\{\frac 9{10^{ij}}\cdot x\right\}\right\}
+	$$
+	
+	那么我们只要处理出所有 $\left\{\frac x{10^k}\right\}$ 即可。最后，对于过于接近整数的中间结果，调用一次高精度除法即可；由于数据随机，所以最多调用 $O(1)$ 次除法。
+	
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	狗屎出题人卡我 $10^{-11}$ 级别的精度，狗屎。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【2020-2021 Summer Petrozavodsk Camp, Day 6: Korean Contest】Koosaga's Problem}
+	
+	存疑！存疑！
+	
+	本场的 https://codeforces.com/gym/102155/problem/D 和 https://codeforces.com/gym/102984/problem/F 保留作模拟赛题目（看到这里的你，不要点进去哦）。
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,543 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{CJKfntef}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{amsmath,amssymb}
+\usepackage{tabu}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=green,bookmarks=true]{hyperref}
+%\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{bookmark}
+\usepackage{inconsolata}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage[ruled,linesnumbered]{Algorithm2e}
+\setlength{\parindent}{2em}
+\geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
+\setcounter{secnumdepth}{0}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{xcolor}
+\usepackage{endnotes}
+\usepackage{multirow}
+\usepackage{notoccite}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}                   
+\usepackage{CJKfntef}        
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{black}
+		\textbf
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\newcommand{\stress}[1]{\textbf{\CJKunderdot{#1}}}
+
+\definecolor{mys}{rgb}{1,0.2,0}%一个颜色
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\lstset{
+	numberstyle=\ttfamily\color{codegray}
+}
+
+\linespread{1.5}%修改行距
+
+% \titleformat{\subsection}{\fontsize{13}{16}}
+
+% \begin{lstlisting}
+	% \end{lstlisting}
+
+%%%my packages
+\usepackage{hyperref}% Links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mys,
+	urlcolor=blue
+}
+% \usepackage{pseudo}% Pseudo Code
+
+\title{标题（无实际意义）}
+\author{作者（无实际意义）}
+\date{日期时间（无实际意义）}
+
+\begin{document}
+	\fontsize{12pt}{12pt}\selectfont
+	
+	\newpage
+	\pagestyle{fancy}
+	\lhead{\footnotesize \songti{信息学一周解题报告汇总\ \ \ -LSH}}
+	\cfoot{\footnotesize 第 \thepage \ 页\qquad  共  \pageref{LastPage} 页}
+	
+	\phantomsection
+	\addcontentsline{toc}{section}{}
+	\rhead{\footnotesize \songti{第三周\ \ \ 2022.9.19 $\sim$ 2022.9.25}}
+	
+	
+	\section*{【CF1464F】My Beautiful Madness}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1464F。
+	
+	给定一颗大小为 $n(n\le2\times 10^5)$ 的树，$m(m\le2\times 10^5)$ 次操作，维护一个初始为空的路径集合 $P$。
+	
+	操作分为三种：
+	
+	\begin{itemize}
+		\item [1.] 输入 $u,v$，在 $P$ 中加入 $u$ 到 $v$ 的路径。
+		\item [2.] 输入 $u,v$，删除 $P$ 中一个 $u$ 到 $v$ 的路径。
+		\item [3.] 输入 $d$，询问 $P$ 中所有路径的 $d$ 邻居交集是否为空。
+	\end{itemize}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先我们进行线段树分治，使得只有加入路径。
+	
+	考虑加入路径的时候怎么维护其 $d$ 邻居交集——若两条路径相交，则保留其相交的部分；若两条路径不相交，则保留它们间那条链的中点为圆心的一个圆。而 $d$ 未知，所以我们只要维护所有的关键点的直径即可（关键点指链上到上一条直径距离最近的点）。
+	
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/86975552。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【PA2012】Binary Dodgeball}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P6819。
+	
+	有 $n$ 个盒子，开始时每个盒子中有一个棋子。
+	
+	两位选手轮流操作，每次可以选择一个 $i$ 号盒子中的棋子和一个正整数 $p$，将棋子移到编号为 $2^p\times i$ 的盒子中。若编号为 $2^p\times i$ 的盒子中已有棋子了，则这两个棋子都会被移出盒子。不能移动者输。
+	
+	求第 $k(1\le 10^9)$ 小的 $n$，使得后手能赢得游戏。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	分段打表可以通过。
+	
+	事实上我们把 $\operatorname{SG}$ 值给写出来，每个 $\frac {x}{\operatorname{lowbit}(x)}$ 一组来看，$\operatorname{SG}(x)$ 值恰为 $\operatorname{lowbit}(x)$。
+	
+	所以得到：
+	
+	$$
+	\begin{aligned}
+		\operatorname{SG}^{*}(n) &= \bigoplus_{x\in [1,n]} \operatorname{lowbit}(x) \\
+		&= \bigoplus_{i=1} i\cdot \left( \left\lfloor\frac n{2^i} \right\rfloor - \left\lfloor\frac n{2^{i+1}} \right\rfloor \right) \\
+		&= \bigoplus_{i=1} [n_i\neq n_{i+1}]i
+	\end{aligned}
+	$$
+	
+	二分套数位 dp 判断即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/86991152。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CCO2018】Boring Lectures}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P6717。
+	
+	有一个长为 $N$ 的数列，第 $i$ 个数为 $a_i$。
+	
+	有 $Q$ 次修改，第 $j$ 次会将第 $i_j$ 个数改成 $x_j$。
+	
+	您需要求出在最初和每次修改之后连续的的 $K$ 个元素中，最大值与次大值的和最大是多少。
+	
+	$2 \le N \le 10^6$，$2 \le K \le N$，$0 \le Q \le 10^5$，$0 \le a_i \le 10^9$，$1 \le i_j \le N$，$0 \le x_j \le 10^9$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	线段树分治，再用线段树维护区间最值即可。别看是两个 $log$，但是前面是 $Q\le 10^5$ 而不是 $N\le 10^6$，所以能过，这是很容易出问题的误区。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87018179。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CCO2018】Boring Lectures}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P6717。
+	
+	有一个长为 $N$ 的数列，第 $i$ 个数为 $a_i$。
+	
+	有 $Q$ 次修改，第 $j$ 次会将第 $i_j$ 个数改成 $x_j$。
+	
+	您需要求出在最初和每次修改之后连续的的 $K$ 个元素中，最大值与次大值的和最大是多少。
+	
+	$2 \le N \le 10^6$，$2 \le K \le N$，$0 \le Q \le 10^5$，$0 \le a_i \le 10^9$，$1 \le i_j \le N$，$0 \le x_j \le 10^9$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	线段树分治，再用线段树维护区间最值即可。别看是两个 $log$，但是前面是 $Q\le 10^5$ 而不是 $N\le 10^6$，所以能过，这是很容易出问题的误区。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87018179。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF936D】World of Tank}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF936D。
+	
+	有两行的格子，有的是障碍。有一辆坦克，每秒向右走一步，上下移动不花时间，每 $t$ 秒可以开一炮，问它能够从最左开到最右，$n\le 10^6$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	我们保留每个障碍的周围 $6$ 个点的并集作为关键点，只考虑坦克在这些关键点上的行动。记下这个坦克“预先”开了几炮，以及距离下次预先开炮还有多久。存下这两个量，然后就能转移了。
+	
+	构造方案可以把整条路径求出来，然后贪心求方案。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87076547。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1452F】Divide Powers}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1452F。
+	
+	珂朵莉给了你一个只含有 $2$ 的整数次幂的可重集合（换句话说，对于 $\forall 0 \le i \le n$，这个集合中有 $cnt_i$ 个元素等于 $2^i$）。
+	
+	可以对这个集合做这样的操作：将一个数 $2^l$ 切分为两个数 $2^{l-1}$。
+	
+	现在珂朵莉会问你 $k$ 个问题，每个问题是这样的格式：
+	
+	\begin{itemize}
+		\item $\texttt{1~pos~val}$，表示珂朵莉把 $cnt_{pos}$ 修改为了 $val$。
+		\item $\texttt{2~x~k}$，表示珂朵莉问你如果她想用上面提到的操作使集合中有至少 $k$ 个元素不大于 $2^x$，最少需要操作多少次。注意：珂朵莉并不会真正地修改这个集合，她只需要你计算出最少需要多少次才能达到她的目标。
+	\end{itemize}
+
+	$n\le 30,q\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	可以观察到一个性质：每次展开小于等于 $2^x$，可以花费 $1$ 的代价获得一个数；但是展开 $2^{x+y}$，可以通过 $2^y-1$ 的代价获得 $2^y$ 个数，可以节约 $1$，如果这 $2^y$ 数都被算入最终答案内，则我们会优先展开 $2^{x+y}$。
+	
+	一种贪心是，我们从小到大把能展开的 $2^{x+y}$ 都展开了；对于剩下的决策，如果小于等于 $2^x$ 的数已经能够展开出 $k$ 个，那么就这么办；否则我们挑当前最小的一个大于 $2^x$ 的数，它肯定得被展开来，所以不妨将其先一路变成 $2^{x+y-1}+2^{x+y-2}\cdots +2\cdot 2^x$，然后递归进行上述贪心。
+	
+	复杂度 $O(qn^2)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://codeforces.com/contest/1452/submission/172797217。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1129E】Legendary Tree}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1129E。
+	
+	有一个 $n\le 500$ 个节点的树，你需要通过不超过 $11111$ 次询问得知树的形态。
+	
+	询问方式为给出两个非空无交点集 $S\ T$ 和一个点 $u$，可以得到满足 $s \in S , t \in T$ 且路径 $(s,t)$ 经过 $u$ 点的二元组 $(s,t)$ 的总数。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	我们随机选出了一个点 $x$，可以整体二分地找到所有在它子树内的点。那么就把问题给划分成了两个部分，分别递归进去处理；顺便将点划分为两种，一种是已经找了子树的，一种是没找子树的，每次只从没找过的里面随机出来。
+	
+	这么做，每次期望将子树内的点的深度除以二，而单次的代价为 $log(size)$，那么总复杂度是 $O(n\log^2(n))$ 的，但是跑不满，可以通过。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87091145。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【JOI Open 2022】放学路}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P8426。
+	
+	给定一张无向带权图，问是否存在两条 $1$ 到 $n$ 的简单路其长度不同。$n,m\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先：点双连通分量缩点后，保留 $1$ 和 $n$ 在树上的路径上的点双连通分量内的点，答案不变（因为路径不会出去），而且对于保留的每一条边，都会满足它有可能被简单路径经过。
+	
+	经过手玩后发现，简单路长度唯一，当且仅当进行二端串并联图缩点的过程中，每次叠合的两条边长度都相等，于是做完了。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87089527。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【JOI Open 2022】跷跷板}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P8424。
+	
+	一根长度为 ${10}^9$ 的直杆从左到右水平放置。你可以忽略这根杆的重量。共有 $N$ 个砝码挂在这根杆上，每个砝码的质量为一单位。这 $N$ 个砝码的位置两两不同。第 $i$（$1 \le i \le N$）个砝码的位置为 $A_i$。
+	
+	最开始，我们有一个宽度为 $w$ 的箱子。我们可以把这根杆子放在箱子上，支撑起杆从 $l$ 到 $r$（$0 \le l < r \le {10}^9$）的部分。
+	
+	接下来，我们去掉挂在杆上最左端或最右端的砝码。我们需要重复这个操作 $N - 1$ 次。在这个过程中，包括初始状态和最终状态，挂在杆上的所有砝码重心都需要保持在 $l$ 到 $r$ 之间（包括两端）。
+	
+	给定 $N$ 和这 $N$ 个砝码的位置 $A_1, A_2, \ldots, A_N$，写一个程序计算箱子的最小可能宽度 $w$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	假设我们知道箱子左端点的坐标，那么我们可以贪心地求出最优的右端点的坐标，我们把答案视作关于 $l$ 的函数 $f(l)$。
+	
+	计算 $f(l)$ 的时候可以有一个剪枝，如果当前答案已经大于之前算出来的最优答案了，那么就直接返回 $inf$。我们就是要求这个 $f$ 函数的最值。
+	
+	我们可以使用迭代法：计算出 $10^{-6}k$ 里的最优 $l$，然后在最优值的附近以 $10^{-8}$ 为尺度来计算，然后再在新最优值附近以 $10^{-10}$ 为尺度来找……这样迭代一下就好了（我的做法）。
+	
+	一种更为优秀的迭代方式是，像整体二分那样迭代（兔学长的做法）。
+	
+	事实上是有 $O(n\log2n)$ 的靠谱做法的。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87216006。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF878E】Numbers on the blackboard}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF878E。
+	
+	给出 $n$ 个数字，每次询问一个区间 $[l,r]$，对这个区间内部的点进行操作。 
+	
+	每次操作可以合并相邻两个数 $x,y$ ，将它们变成 $x+2y$。对于每次询问输出当最后只剩下一个数字时，这个数字的最大值。 
+	询问互相独立，答案对 $10^9+7$ 取模。（注意数字有正有负）。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	一种贪心是，从右到左考虑，如果 $a_r$ 为负，那么把 $a_r$ 留到最后来合并，贡献为 $2a_r$；如果是正的，那么直接合并 $a_{r-1}+2a_r$ 显然更为合算。我们从左到右扫，维护一个从右向左合并的类似单调栈的东西；把询问离线下来到单调栈上二分处理即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/87247508。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【UR 14】人类补完计划}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/193。
+	
+	给定一张无向图，定义一个基环树生成子图的权值为 $2$ 的非叶子节点个数次方。问其所有基环树生成子图的权值的和。$n\le 16$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先 $2^n\operatorname{Poly}(n)$ 计算出环的个数，然后考虑依次向外拓展一层的叶子结点。枚举叶子结点集合 $T$，根据不可能没有叶子结点，得出容斥：
+	
+	$$
+	f(S)=\sum_{T\subseteq S} f_{S-T}\cdot (-1)^{|T|+1} \cdot c(S-T,T)
+	$$
+	
+	其中 $c(A,B)$ 表示 $B$ 中每个点在 $A$ 里面找一个父亲的方案数，可以很方便地预处理和在 dp 过程中顺便计算。
+	
+	对于带权的树，我们只要给容斥带上一个系数即可：
+	
+	$$
+	Ans=\sum_{T\subseteq S} f_{S-T}\cdot (-1)^{|T|}\cdot 2^{|S-T|}
+	$$
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/584514。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【UR 16】破坏蛋糕}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/242。
+	
+	平面上有 $n+1$ 条直线，前 $n$ 条直线把平面分成许多块，这些块有些面积有限，有些面积无限，而第 $n+1$ 条直线不经过前 $n$ 条直线的交点，且一定不和前 $n$ 条直线中的任意一条平行，求第 $n+1$ 条直线被前 $n$ 条直线划分成的 $n+1$ 段中哪些在面积有限的块里，哪些在面积无限的块里。$n\le 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	观察力拉满！比如我们先考虑直线上方，一段线段是向上开放的，当且仅当它左边的所有直线的最小夹角大于它右边所有直线的最大夹角。于是求完夹角求个前后缀 $\min/\max$ 就好。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/584166。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【UR 16】破坏发射台}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/242。
+	
+	长度为 $n$ 的环，每个点染色，有 $m$ 种颜色，要求相邻相对不能同色，求方案数。（定义两个点相对为去掉这两个点后环能被分成相同大小的两段）。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	对于奇数，矩阵快速幂一下就好了；对于偶数，设 $1$ 号位的颜色是 $1$，它对面的位置颜色是 $2$，其它颜色是 $3$，那么我们可以把对应位置一起决策进行矩阵快速幂。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/584141。
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+

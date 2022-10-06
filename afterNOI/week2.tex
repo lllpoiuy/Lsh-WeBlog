@@ -20,6 +20,7 @@
 \usepackage{geometry}
 \usepackage{titlesec}
 \usepackage{paralist}
+\usepackage[ruled,linesnumbered]{Algorithm2e}
 \setlength{\parindent}{2em}
 \geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
 \setcounter{secnumdepth}{0}
@@ -509,6 +510,45 @@
 	
 	https://atcoder.jp/contests/arc133/tasks/arc133\_e。
 	
+	给定 $N,M,V,A$，生成一个值域在 $[1,V]$ 的长度为 $N$ 的序列 $X$和长度为 $M$ 的序列 $Y$。进行如下过程：
+	
+	
+	\begin{algorithm}
+
+		$x \leftarrow A$\;
+		
+		\For{$i\in [0,NM-1]$}{
+			$x\leftarrow \operatorname{middle\_value}\left(x,X_{i\bmod N},Y_{i\bmod M}\right)$\;
+		}
+		
+		return $x$\;
+
+	\end{algorithm}
+
+	求所有 $X$ 和 $Y$ 对应的算法返回值的和（对 $998244353$ 取模），$M,M,A,V\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	将答案拆成 $\sum_{F_i}$，$F_i$ 表示返回值大于等于 $i$ 的方案数。将大于等于 $i$ 的数视作 $1$，其它视作 $0$。
+	
+	考察这个过程，若出现 $\operatorname{middle\_value}\left(x,0,0\right)$ 则 $x\leftarrow 0$；若 $\operatorname{middle\_value}\left(x,1,1\right)$ 则 $x\leftarrow 1$；其它情况下不变。
+	
+	对于 $x$ 不变的情况：即不出现任何 $0,0$ 和 $1,1$。令 $G=\gcd(N,M)$，这部分的方案数就为：
+	
+	$$
+	\left((i-1)^{\frac NG}\cdot(V-i+1)^{\frac MG}+(i-1)^{\frac MG}\cdot(V-i+1)^{\frac NG}\right)^G
+	$$
+	
+	对于 $x$ 会改变的情况：发现 $F_i$ 里的 $=0$ 的情况会和 $F_{V-i+2}$ 里的 $=1$ 的情况对应，因此配对并利用总情况减去不变的情况计算即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://atcoder.jp/contests/arc133/submissions/34873040。
+	
 	% -----------------------------------------------------------------------------------
 	
 	\section*{【ARC133F】Random Transition}
@@ -518,6 +558,8 @@
 	\subsection*{【题目描述】}
 	
 	https://atcoder.jp/contests/arc133/tasks/arc133\_f。
+	
+	How Elegia's mind works?
 	
 \end{document}
 
