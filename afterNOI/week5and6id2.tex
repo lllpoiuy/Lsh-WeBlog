@@ -1,0 +1,296 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{CJKfntef}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{amsmath,amssymb}
+\usepackage{tabu}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=green,bookmarks=true]{hyperref}
+%\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{bookmark}
+\usepackage{inconsolata}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage[ruled,linesnumbered]{Algorithm2e}
+\setlength{\parindent}{2em}
+\geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
+\setcounter{secnumdepth}{0}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{xcolor}
+\usepackage{endnotes}
+\usepackage{multirow}
+\usepackage{notoccite}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}                   
+\usepackage{CJKfntef}        
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{black}
+		\textbf
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\newcommand{\stress}[1]{\textbf{\CJKunderdot{#1}}}
+
+\definecolor{mys}{rgb}{1,0.2,0}%一个颜色
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\lstset{
+	numberstyle=\ttfamily\color{codegray}
+}
+
+\linespread{1.5}%修改行距
+
+% \titleformat{\subsection}{\fontsize{13}{16}}
+
+% \begin{lstlisting}
+	% \end{lstlisting}
+
+%%%my packages
+\usepackage{hyperref}% Links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mys,
+	urlcolor=blue
+}
+% \usepackage{pseudo}% Pseudo Code
+
+\title{标题（无实际意义）}
+\author{作者（无实际意义）}
+\date{日期时间（无实际意义）}
+
+\begin{document}
+	\fontsize{12pt}{12pt}\selectfont
+	
+	\newpage
+	\pagestyle{fancy}
+	\lhead{\footnotesize \songti{信息学一周解题报告汇总\ \ \ -LSH}}
+	\cfoot{\footnotesize 第 \thepage \ 页\qquad  共  \pageref{LastPage} 页}
+	
+	\phantomsection
+	\addcontentsline{toc}{section}{}
+	\rhead{\footnotesize \songti{第五、六周\ \ \ 2022.10.9 $\sim$ 2022.10.22}}
+	
+	\section*{正睿 OI 好题精选}
+
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day1-密码}
+	
+	http://www.zhengruioi.com/contest/1268/problem/2356。
+	
+	精妙的构造题！
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day1-旅行}
+	
+	http://www.zhengruioi.com/contest/1268/problem/2355。
+	
+	单调栈维护，对于每种余数分别建单调栈，每种余数下每个点需要代表一个整块，需要再写一个单调栈来维护整块；散块直接在单调栈上二分即可。复杂度 $O(n\log n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day1-狼人}
+	
+	http://www.zhengruioi.com/contest/1268/problem/2354。
+	
+	对于每种颜色分别 dp，在 dp 的时候剪枝好上下界。注意到 $f_{u,i}$ 形式的 dp，当 $i\le \min(k,sz_u)$ 时，复杂度位 $O(kn)$；于是总复杂度为 $O(n\sum k)=O(n^2)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day2-Permutation}
+	
+	http://www.zhengruioi.com/contest/1269/problem/2390。
+	
+	对于只出现一次的素数，就不要用了；出现两次的素数，最多使用两个，因为 $1p 2p 2x .... 2y 2q 1q$ 就已经把数列限制死了。对于出现三次的素数，我们可以 $2p 1p 3p 3p 1p 2p$ 配对起来，多出来的一个找 $12$ 帮助配对一下；其它的素数都可以自成一派 $4p ..... 2p$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day3-等差数列}
+	
+	http://www.zhengruioi.com/contest/1270/problem/2400。
+	
+	考虑公比是 $k$，那么答案是 $O(n^2k)$ 级别的，而一个显然的代价上界是 $\sum a$，所以有效的 $k$ 只有 $O(\frac{\max a}{n})+O(1)$ 级别。直接枚举！
+	
+	如何计算对应的最小代价呢？我们另每个数都减去 $ik$，那么就是要另前后分别相等；考虑怎么计算一个前缀它要都相等要花费的最小代价，这个东西分奇数位和偶数位分贝是凸的，用 priority\_queue 维护即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day4-简单题}
+	
+	http://www.zhengruioi.com/contest/1271/problem/2426。
+	
+	考虑像笛卡尔树那样枚举最大值在哪里，并且这个最大值可以放缩，不需要一定是真正的最大值。转移也就变成了在凸包上查询的形式，可以离线双指针 $n^2$ 次，也可以直接在凸包上二分。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day4-数数题}
+	
+	http://www.zhengruioi.com/contest/1271/problem/2427。
+	
+	一个点的期望深度容易通过 dp 简单算出，问题变为求 $E(\mathrm{dep_{\operatorname{lca}(u,v)}}$
+	考虑枚举一个点 $l$，计算其作为 lca 的概率；
+	
+	$$
+	\sum_{S_1\subseteq (l,x)}\sum_{S_2\subseteq (1,y)} [S_1\cap S_2=\emptyset]\cdot \left(\prod_{u\in S_1} \frac {a_u}{b_u}\right)\cdot \left(\prod_{u\in S_2} \frac {a_u}{b_u}\right)\cdot\frac {a_l^2}{b_xb_y}
+	$$
+	
+	结合类似生成函数的思想可以得到：
+	
+	$$
+	\frac {a_l^2}{b_xb_y}\prod_{i\in(l,x)}(1+2c_u)\prod_{i\in(x,y)} (1+c_u)
+	$$
+	
+	这就特别好维护了。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day5-排列}
+	
+	http://www.zhengruioi.com/contest/1275/problem/2440。
+	
+	提取出直径，分支上的情况数非常少；但是由于直径有 $O(n^2)$ 条，难以去重，所有对分支直接搜索，总复杂度还是 $O(\operatorname{poly}(n))$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day5-树}
+	
+	http://www.zhengruioi.com/contest/1275/problem/2439。
+	
+	依然是提取出直径，然后考虑这个直径的中点，一定在一条边上徘徊。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day6-脉冲星}
+	
+	http://www.zhengruioi.com/contest/1276/problem/2372。
+	
+	事实上不等于 $R$ 的数可以达到 $\log$ 个。所以我们直接 dp，dp 这 log 个中有多少个顶着上界、多少个顶着下界，然后从高到低位考虑即可。$O(\log^4)$。
+	
+	用贪心可以优化到 $O(\log^2)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day6-括号序列}
+	
+	http://www.zhengruioi.com/contest/1276/problem/2371。
+	
+	神秘带悔贪心。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day6-脉冲星}
+	
+	http://www.zhengruioi.com/contest/1276/problem/2372。
+	
+	事实上不等于 $R$ 的数可以达到 $\log$ 个。所以我们直接 dp，dp 这 log 个中有多少个顶着上界、多少个顶着下界，然后从高到低位考虑即可。$O(\log^4)$。
+	
+	用贪心可以优化到 $O(\log^2)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day7-D}
+	
+	http://www.zhengruioi.com/contest/1277/problem/2364。
+	
+	建出可持久化线段树维护 Trie 跑匹配 dp，可以发现复杂度可以过到 70；正解则是直接在原图上用可持久化的思想来把非法路径容斥掉。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day7-C}
+	
+	http://www.zhengruioi.com/contest/1277/problem/2363。
+	
+	哈密顿回路最长一定是每条边的贡献次数都是其两边的点数取 $\min$ 乘二！
+	
+	一种方式是枚举重心，然后要求每个孩子都小于等于一半，但是只能做到 $O(nk)$。
+	
+	正解是直接考虑一个点两侧的点数来 dp，通过凸性等等优化。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day8-序列}
+	
+	http://www.zhengruioi.com/contest/1278/problem/2368。
+	
+	考虑 $1$ 出现的位置的奇偶性，相邻的两个相同的可以合并，所以最后剩下的一定是奇偶奇偶奇偶...，这个有结合律，可以用线段树维护。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{22 冲刺 day8-树}
+	
+	http://www.zhengruioi.com/contest/1278/problem/2367。
+	
+	硬猜结论，结合拓展凯莱定理来做！
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

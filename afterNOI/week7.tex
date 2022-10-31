@@ -1,0 +1,479 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{CJKfntef}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{amsmath,amssymb}
+\usepackage{tabu}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=green,bookmarks=true]{hyperref}
+%\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{bookmark}
+\usepackage{inconsolata}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage[ruled,linesnumbered]{Algorithm2e}
+\setlength{\parindent}{2em}
+\geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
+\setcounter{secnumdepth}{0}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{xcolor}
+\usepackage{endnotes}
+\usepackage{multirow}
+\usepackage{notoccite}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}                   
+\usepackage{CJKfntef}        
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{black}
+		\textbf
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\newcommand{\stress}[1]{\textbf{\CJKunderdot{#1}}}
+
+\definecolor{mys}{rgb}{1,0.2,0}%一个颜色
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\lstset{
+	numberstyle=\ttfamily\color{codegray}
+}
+
+\linespread{1.5}%修改行距
+
+% \titleformat{\subsection}{\fontsize{13}{16}}
+
+% \begin{lstlisting}
+	% \end{lstlisting}
+
+%%%my packages
+\usepackage{hyperref}% Links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mys,
+	urlcolor=blue
+}
+% \usepackage{pseudo}% Pseudo Code
+
+\title{标题（无实际意义）}
+\author{作者（无实际意义）}
+\date{日期时间（无实际意义）}
+
+\begin{document}
+	\fontsize{12pt}{12pt}\selectfont
+	
+	\newpage
+	\pagestyle{fancy}
+	\lhead{\footnotesize \songti{信息学一周解题报告汇总\ \ \ -LSH}}
+	\cfoot{\footnotesize 第 \thepage \ 页\qquad  共  \pageref{LastPage} 页}
+	
+	\phantomsection
+	\addcontentsline{toc}{section}{}
+	\rhead{\footnotesize \songti{第七周\ \ \ 2022.10.23 $\sim$ 2022.10.29}}
+	
+	
+	\section*{「2021 集训队互测」Lovely Dogs}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://loj.ac/p/3632。
+	
+	有 $n$ 只可爱的狗子，第 $i$ 只可爱的狗子的可爱值为 $a_i$。可爱的狗子们通过一些姐妹关系形成了一个树状结构。在 $1$ 号狗子是树的根的情况下，$i$ 号狗子的子树内的狗子就是 $i$ 号狗子的妹妹们。
+	
+	若一只可爱的狗子 $i$ 在玩游戏，那么她会对游戏产生 $f_d(a_i^2)$ 的欢乐值。若两只可爱的狗子 $i,j$ 在一起玩游戏，那么她们会对游戏产生 $f_d(a_ia_j)$ 的欢乐值。一次游戏的欢乐值是所有玩游戏的狗子和狗子对，所贡献的欢乐值的和。
+	
+	给定常数 $d$。我们将 $z$ 拆解成一些质数的幂次的乘积 $z=\prod_ip_i^{k_i}$，我们定义：
+	
+	$$
+	f_d(z)=\prod_i(-1)^{k_i}[k_i\le d]
+	$$
+	
+	现在对于每只可爱的狗子 $x$，她打算和她的妹妹们一起玩游戏，希望你能帮她们计算出此次游戏的欢乐值。$n\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	蔡欣然美丽且智慧！注意到 $f_d(z)$ 可以拆开来：
+	
+	$$
+	f_d(z) = \prod_i [k_i\le d] \prod_i (-1)^{k_i}
+	$$
+	
+	而后半部分是一个完全积性函数，设它为 $g$，那么 $\sum_{i,j} g(a_i\cdot a_j)=\left(\sum a_i\right)^2$，可以直接统计；而第一部分的那个条件限制才是最难考虑的。
+	
+	考察前半部分的 Bell 级数，它是一个 $1,1,1,1,1,0,0,0,\cdots$ 的形式，我们自然地将其卷上 $\mu$；或者换个方向思考，设 $x$ 是最大的 $x^{d+1}$ 整除 $z$ 的数，那么 $x=1$，即 $\sum_{t|x} \mu(t)$！于是得到：
+	
+	$$
+	\begin{aligned}
+		\sum_{j} f_d(a_i\cdot a_j)
+		&= g(a_i)\cdot \sum_t \mu(t)\sum_{j} \left[t^{d+1}|a_i\cdot a_j\right]g(a_j)\\
+		&= g(a_i)\cdot \sum_t \mu(t) \sum_{j} \left[\frac{t^{d+1}}{\gcd(t^{d+1},a_i)}|a_j\right]g(a_j)\\
+		&= f_d(a_i)\cdot \sum_{t|a_i} \mu(t) \sum_{j} \left[\frac{t^{d+1}}{\gcd(t^{d+1},a_i)}|a_j\right]f_d(a_j)\\
+	\end{aligned}
+	$$
+	
+	注意到 $t$ 只要枚举到 $a_i$ 的因数，否则的话 $a_j$ 里肯定有一个 $d+1$ 次的质因子，就可以用 $f_d$ 来判掉。在此基础上，用 dsu on tree 就可以轻松做到 $o(n\log^2n)$ 的总复杂度。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://loj.ac/s/1612145。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{「ICPC World Finals 2018」征服世界}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://loj.ac/p/6405。
+	
+	你有一张世界地图，并且知道各国家之间所有可用的交通路线。每条路线连接两个国家，并且有一个固定的费用，每一个军队沿该路线移动都需要一个单位的费用。你知道目前你的所有军队所在的位置，以及在每个国家至少需要放置多少军队来征服它。你至少需要花多少钱移动你的军队来征服世界？
+	
+	$1 \le n \le 250000$，保证总军队数（$x_i$ 的和）不小于 $y_i$ 的和，且不大于 $10^6$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	这个看着就一股费用流的感觉，当然应该往模拟费用流的方面去考虑。考虑记盈余军队的为 +，需要增援的为 -，那么我们就是要 +- 匹配，且 - 全都要匹配，且总权值和最小。
+	
+	若一个 + 和一个 - 的匹配了，那么我们要有两个反悔点，一个是假的 +，把这个 - 的匹配走；一个是假的 -，把这个 + 的匹配走，全都放在 lca 处即可。
+	
+	实现上可以从下到上启发式合并，每个点维护两个堆，每当两个堆的堆顶的和小于等于 $0$，就取出两个堆顶进行合并，并产生两个新的虚点。
+	
+	为了保证每个 - 的都必选，我们给每个 - 都先添上 $-\infty$ 的权值，最后再加上我们减去的权值即可。$O(n\log^2n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://loj.ac/s/1614253。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{「ICPC World Finals 2018」绿宝石之岛 \& 「2020-2021 集训队作业」Gem Island 2}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://loj.ac/p/6406。
+	
+	有 $n$ 个人，每个人手上有一颗宝石，$d$ 个晚上，每个晚上会有随机一颗宝石分裂成两个宝石。问最后一晚之后，拥有宝石数量最多 $r$ 个人的宝石数量的和。
+	
+	ICPC 中，$n,d\le 500$，要求输出 $10^{-6}$ 级别精度；集训队作业中，$n,d\le 1.5\times 10^7$，要求对 $998244353$ 取模。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	考虑 Min-Max 反演，就变成了问 $i$ 个人的集合里问最小值的期望 $f_i$。直接枚举最小值是 j，然后将贡献差分一下，然后就只要写出“概率”，用 EGF 可以很硬核地直接写出来：
+	
+	$$
+	\begin{aligned}
+		f(i)
+		&= \frac {d!}{n^{\bar{d}}} \sum_{j=0} [x^d]\left(\frac 1{1-x}\right)^{n-i}\cdot \left(\frac {x^j}{1-x}\right)^{i}\\
+		&= \frac {d!}{n^{\bar{d}}} \sum_{j=0} \binom{n+d-ij-1}{d-ij-1}
+	\end{aligned}
+	$$
+	
+	注意到组合数内的变量只有 $ij$，可以通过快速迪利克雷后缀和得到。然后考察 Min-Max 容斥的系数：
+	
+	$$
+	\begin{aligned}
+		&= \sum_{i=1}^n f(i)\cdot \binom{n}{i}\cdot\left( \sum_{j=1}{\min(r,i)} (-1)^{i-j}\binom{i-1}{j-1} \right)
+	\end{aligned}
+	$$
+	
+	注意到前半部分都好求，括号里的东西，可以递推地求出！$O(n\log\log n)$。对于 ICPC 版本，可以用手写高精度浮点数和先乘后除来完成。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://loj.ac/s/1614641 \& https://loj.ac/s/1614696。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【清华集训2014】矩阵变换}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/41。
+	
+	给出一个 $N$ 行 $M$ 列的矩阵 $A$，保证满足以下性质：
+	
+	\begin{itemize}
+		\item $M>N$
+		\item 矩阵中每个数都是 $[0,N]$ 中的自然数。
+		\item 每行中，$[1,N]$ 中每个自然数都恰好出现一次。这意味着每行中 $0$ 恰好出现 $M\sim N$ 次。
+		\item 每列中，$[1,N]$ 中每个自然数至多出现一次。
+		
+	\end{itemize}
+	
+	现在我们要在每行中选取一个非零数，并把这个数之后的数赋值为这个数。我们希望保持上面的性质 4。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	由于最后一列的限制，所以每行选出的数两两不同！我们不妨视作是从数到行的完美匹配。
+	
+	继续考察限制 $4$，就发现等同于不存在如下这样两行：
+	
+	22222222222222
+	   2    333333
+	   
+	这就是一个稳定婚姻系统！因为记每个数字为女生，行为男生，女生对男生的好感度是这个数字在这行出现的位置，越靠左越好；男生对女生的好感度也类似，但是越靠右越好，于是上面的两行其实就等价于一对不稳定情侣。$O(NM)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/589678。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【UR 13】Ernd}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/187。
+	
+	有一个掉落式音游，接水果的盘子长度为 $1$，每秒只能左移一步或者右移一步或者不动；在某些递增的时刻里会有水果掉下来，总分是每段连击长度的平方的和。水果个数 $5\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	显然根据能不能连击，我们能把水果序列划分成若干段可以连击的段，段内的转移就是一个标准的斜率优化的形式。
+	
+	而段间的转移则是一个二维偏序的形式，注意到点 $(x_i,y_i)$ 能转移的区间是它上方 $45^{\circ}$ 和 $135^{\circ}$ 这个区间，我们只要把平面斜过来看就变成一个标准的矩形的二维偏序了。即 $(x',y')=(y'-x',y'+x')$，然后每个数向偏序它的点转移，直接扫横坐标维护一个纵坐标的树状数组即可。 $O(n\log^2 n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/589395。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【AGC032D】Rotation Sort}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://atcoder.jp/contests/agc032/tasks/agc032\_d。
+	
+	给定一个排列 $p$，每次你可以进行如下两种操作：
+	
+	\begin{itemize}
+		\item [1.] 花费 $A$ 的代价，选择某个区间 $[l,r]$，把它向左循环移位。
+		\item [2.] 花费 $B$ 的代价，选择某个区间 $[l,r]$，把它向右循环移位。
+	\end{itemize}
+
+	问将其排序的最小代价。$n\le 5000$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	一个很关键的想法是将其看作是插入排序。显然至少存在某个位置 $mid$，不变，不妨枚举 $mid$，$mid$ 左侧的 $>mid$ 的数必然要右移，$mid$ 右侧的 $<mid$ 的数必然要左移，那这些数就是自由的，我们只要递归下去处理 $mid$ 左侧的 $<mid$ 和 $mid$ 右侧的 $>mid$ 的数就行了。这就得到了一个 $O(n^5)$ 的做法。
+	
+	如上做法其实能启发我们直接枚举所有的不变的点（构成一个上升子序列），对于固定的点 $x,y$ 之间的数，若 $<x$，贡献为 $B$，若 $>y$ 贡献为 $A$，若在 $[x,y]$ 中，则它也可以不动，不妨设它会花费 $B$，那么每个数的贡献就只取决于和 $y$ 的大小关系了，也就可以 $O(n^2)$ 完成这个 dp 了。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://atcoder.jp/contests/agc032/submissions/35958089。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【AGC015D】A or...or B Problem}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://atcoder.jp/contests/agc015/tasks/agc015\_d。
+	
+	用 $A$ 到 $B$ 间的数，能用按位或表出多少个数？$A,B< 2^{60}$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	我们枚举一个数 $x$，check 它能否被表出。显然 $x$ 中等于 $0$ 的位已经固定了，这些位上的数一定得是 $0$，也就是我们只能用 $[l,r]$ 内，这些位上都是 $0$ 的数，记这个集合为 $S$；这些数显然全用上最优。
+	
+	对于其它的位 $z$，都要存在一个数 $\in S$，其第 $z$ 位为 $1$。我们求出大于等于 $A$ 的、该是 $0$ 的位上全是 $0$ 的、第 $z$ 位上为 $1$ 的最小数为 $y$，那么 $y$ 一定要 $\le B$。
+	
+	我们求出大于等于 $A$ 的、该是 $0$ 的位上全是 $0$ 的、不要求第 $z$ 位上为 $1$ 的最小数，然后把第 $z$ 位改为 $1$，$z$ 后面的数全清空（如果上一步操作没有改变的话不进行此操作），就得出了 $y$；那显然最劣的是最高的没有填 $1$ 的自由位记为 $z$。
+	
+	我们从低到高，dp of dp 地做，记下之前是从哪一位开始大于/等于/无法大于，以及最高的没有填 $1$ 的自由位的位置，然后就能 dp 转移了。$O(60^3)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://atcoder.jp/contests/agc015/submissions/35976355。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【AGC004D】Teleporter}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://atcoder.jp/contests/agc004/tasks/agc004\_d。
+	
+	给定一棵内向树，问至少改变多少个点的父亲，才能使得每个点的深度都小于等于 $k$。$n\le 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	直接从下向上考虑，不能不断了就断，这样显然最优。
+	
+	如果点带权、每个点的深度限制不同怎么做？我们直接维护 $dp_{u,i}$ 表示 $u$ 子树，$u$ 的深度为 $i$ 时的最小花费。为了减小转移的复杂度，可以直接维护差分数组，显然都属单增的；把 $u$ 接到根上，也就是在其 dp 数组的末尾弹掉一些差分位置。
+	
+	map + 启发式合并即可，$O(n\log^2 n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://atcoder.jp/contests/agc004/submissions/35982098。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【AGC038E】Gachapon}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://atcoder.jp/contests/agc038/tasks/agc038\_e。
+	
+	有一个随机数生成器，生成 $[0,n-1]$ 之间的整数，其中生成 $i$ 的概率为 $\frac{A_i}{S}$，其中，$S=\sum A_i$。
+	
+	这个随机数生成器不断生成随机数，当 $\forall i\in[0,n-1]$，$i$ 至少出现了 $B_i$ 次时，停止生成，否则继续生成。
+	
+	求期望生成随机数的次数，输出答案对 $998244353$ 取模的结果。
+	
+	$A_i,B_i\geq 1$，$\sum A_i,\sum B_i,n\leq 400$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	直接枚举 $i$ 是最后填满的，写出这种情况的生成函数：
+	
+	$$
+	F=\prod_{j\neq i} \left(e^{\frac{A_j}{SA}x}-\sum_{k=0}^{B_j-1}\left(\frac{A_j}{SA}\right)^k\frac {x^k}{k!}\right)\cdot \left(\frac{A_i}{SA}x\right)^{B_i-1}\cdot \frac{1}{(B_i-1)!}
+	$$
+	
+	我们可以将其看作是关于 $e^{\frac 1{SA}x}$ 的多项式，每项的系数是一个关于 $x$ 的多项式，直接用二维多项式乘法和除法即可维护。
+	
+	而最后对于某一项 $e^{ax}\cdot x^b$，我们要求的是 $\sum_{i=0}^{+\infty} a^i\cdot(i+1)^{\bar{b}}$，可以先将 $(i+1)^{\bar{b}}$ 展开，变成求 $\sum_{i=0}^{+\infty}a^i\cdot i^j$。
+	
+	这个东西的求法（感谢 18Michael！！！）是，设 $f(a,j)$ 为那一串，那么作差：
+	
+	$$
+	\begin{aligned}
+		f(a,j)-a\cdot f(a,j)
+		&=\sum_{i=0}^{+\infty} a^i\sum_{l=0}^{j-1} i^{l}\cdot (-1)^{i-j+1}\cdot\binom{j}{l}\\
+		&=\sum_{l=0}^{j-1} \cdot (-1)^{i-j+1}\binom{j}{l} \cdot f(a,l)
+	\end{aligned}
+	$$
+	
+	于是就行了！还有再预处理出 $F(a,j)=\sum_{i=0}^{+\infty} a^i\cdot(i+1)^{\bar{b}}$ 便可以将复杂度做到 $O(n^3)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://atcoder.jp/contests/agc038/submissions/36010199。
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,603 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{CJKfntef}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{amsmath,amssymb}
+\usepackage{tabu}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=green,bookmarks=true]{hyperref}
+%\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{bookmark}
+\usepackage{inconsolata}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage[ruled,linesnumbered]{Algorithm2e}
+\setlength{\parindent}{2em}
+\geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
+\setcounter{secnumdepth}{0}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{xcolor}
+\usepackage{endnotes}
+\usepackage{multirow}
+\usepackage{notoccite}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}                   
+\usepackage{CJKfntef}        
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{black}
+		\textbf
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\newcommand{\stress}[1]{\textbf{\CJKunderdot{#1}}}
+
+\definecolor{mys}{rgb}{1,0.2,0}%一个颜色
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\lstset{
+	numberstyle=\ttfamily\color{codegray}
+}
+
+\linespread{1.5}%修改行距
+
+% \titleformat{\subsection}{\fontsize{13}{16}}
+
+% \begin{lstlisting}
+	% \end{lstlisting}
+
+%%%my packages
+\usepackage{hyperref}% Links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mys,
+	urlcolor=blue
+}
+% \usepackage{pseudo}% Pseudo Code
+
+\title{标题（无实际意义）}
+\author{作者（无实际意义）}
+\date{日期时间（无实际意义）}
+
+\begin{document}
+	\fontsize{12pt}{12pt}\selectfont
+	
+	\newpage
+	\pagestyle{fancy}
+	\lhead{\footnotesize \songti{信息学一周解题报告汇总\ \ \ -LSH}}
+	\cfoot{\footnotesize 第 \thepage \ 页\qquad  共  \pageref{LastPage} 页}
+	
+	\phantomsection
+	\addcontentsline{toc}{section}{}
+	\rhead{\footnotesize \songti{第五、六周\ \ \ 2022.10.9 $\sim$ 2022.10.22}}
+	
+	
+	\section*{【CERC2017】Buffalo Barricades}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P4737。
+	
+	第一象限上有一些整点表示牛。接下来依次来了一些人，每个人放下一个树桩，然后从这个树桩向上向左延伸地建栅栏，直到碰到其它栅栏为止。问每个树桩在刚建成的时候它左下方向包住了多少只牛。牛和人的数量分别小于等于 $3\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	一种办法是，我们用一个平衡树维护每个区域内的牛和未来要放下的树桩，每次放下新树桩时，找到其对应的区域，并进行启发式分裂。平衡树可以按照 $x$ 排序，先把横坐标太大不可能被包住的部分 split 出去，然后在剩下的部分中，每次去掉一个最大值和一个最小值，直到剩下的点全部被包住或全不被包住为止，这样做时间复杂度为 $O(\min(a,b))$，总复杂度也就是 $O(n\log^2 n)$。
+	
+	另一种办法是，从上到下扫描线，维护当前还存在竖线，那么每次加入新树桩都属把它左侧时间比其晚的一个连续后缀去掉；最后变成一个合并问题就行。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/89790717。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1693D】Decinc Dividing}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1693D。
+	
+	定义一个序列 $a$ 是好的，仅当可以通过删除 $a$ 的一个单调递减子序列（可以为空）使得 $a$ 单调递增。  
+	给定一个 $1\sim n$ 的排列 $p$，你需要求出 $p$ 有多少子段是好的。$n\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	注意到如果不存在 3 4 1 2 或者 2 1 4 3 这样的子序列，就一定合法。构造的话，直接提取出区间的 LIS 即可。
+	
+	对于每个 3，求出其后面最近的 4；对于每个 2，求出其前面最近的 1，然后从右到左扫描线，扫到一个 1 就把对应其的 2 全加进去，遇到一个 4 就把它对应的 3 全拿出来在树状数组上查询一个后缀最大值，就能找到所有的 3 4 1 2。
+	
+	找到所有 ban 掉的区间 $[l,r]$，然后双指针找到每个 $l$ 能延伸到的最大的 $r$ 即可。$O(n\log^2n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/90355912。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【P7482】不条理狂诗曲}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P7482。
+	
+	YSGH 有一个长度为 $n$ 的非负整数序列 $a$，定义 $f(l, r)$ 表示从 $a$ 序列的区间 $[l, r]$ 选择若干不相邻的数的和的最大值。$n\le 2\times 10^5$。
+	
+	YSGH 想知道 $\displaystyle \left[ \sum_{l = 1}^{n} \sum_{r = l}^{n} f(l, r) \right] \bmod ({10}^9 + 7)$ 。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	考虑分治，对于分治中线的左右两侧，求出取了 mid 和没有取 mid 的两种后缀最大值，记为 $(f,g)$，然后两侧分别按照 $f-g$ 排序，然后双指针一下即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/90460076。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{「C.E.L.U-02」苦涩}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P7476。
+	
+	YQH 的脑中可以被分成 $n$ 个片区，每个片区相当于一个存放记忆的可重集，初始为空。他将进行 $m$ 次这三种操作:
+	
+	\begin{itemize}
+		\item [1.] 区间 $l\sim r$ 的片区中都浮现了一个苦涩值为 $k$ 的记忆。
+		\item [2.] YQH 开始清理 $l\sim r$ 片区的记忆。如果一个片区 $k\in[l,r]$ 且 $k$ 中苦涩值最大的记忆与 $l\sim r$ 片区中苦涩值最大的记忆相等，则将这个苦涩值最大的记忆忘记。如果在同一个片区有多个相同的苦涩值最大的记忆，则只忘记一个。如果这些片区内没有记忆，则无视。
+		\item [3.] YQH 想知道，$l\sim r$ 片区中苦涩值最大的记忆的苦涩值是多少，如果不存在，输出`-1`。
+	\end{itemize}
+
+	$n\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	用线段树套堆来维护，每个结点维护一个最大值，再开一个堆维护当前还没下传的堆。
+	
+	遇到一个点，如果它的最大 tag 等于目标区间的最大值，那就将它下传；如果当前区间被目标区间完全包含，若它的最大 tag 恰好等于目标最大值，那就 pop；否则，暴力递归下去删并剪枝。
+	
+	根据势能分析，时间复杂度为 $O(n\log^2n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/90466798。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【JSOI2016】无界单词}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P5770。
+	
+	对于一个单词 $S$ ，如果存在一个长度 $l$，满足 $0 < l < |S|$，并且使得 $S$ 长度为 $l$ 的前缀与 $S$ 长度为 $l$ 的后缀相同，JYY 则称 $S$ 是有界的。比如 `aabaa` 和 `ababab` 就都是有界的字符串。如果一个单词不存在这样的 $l$ ，则 JYY 称之为无界单词。
+	
+	现在考虑所有仅由字母 `a` 和 `b` 组成的长度为 $N(N\le 64)$ 的字符串，JYY 想知道：
+	
+	\begin{itemize}
+		\item [1.] 一共有多少个无界单词？
+		\item [2.] 这些无界单词中，按字典序排列第 $K$ 小的单词是哪一个？
+	\end{itemize}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	二分，变成求字典序小于等于 $mid$ 的无界单词有多少个；枚举在哪一位开始严格小于，然后用那个经典的枚举最短 border（最短 border 小于等于一半）即可。$O(64^5)$。
+	
+	事实上，我们可以从高到低位逐位确定，就直接变成了固定某个前缀，任意后缀，问无界单词的个数；而 dp 所需要的信息可以通过 kmp 和 z 函数求出，总复杂度可以降至 $O(64^3)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/90599280。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【HNOI2014】江南乐}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P3235。
+	
+	游戏的规则：给定一个数 $F$，游戏包含 $N$ 堆石子，小 $A$ 和他的对手轮流操作。每次操作时，操作者先选定一个不小于 $2$ 的正整数 $M$，指定一堆数量不小于 $F$ 的石子分成 $M$ 堆，并且满足这M堆石子中石子数最多的一堆至多比石子数最少的一堆多 $1$。当一个玩家不能操作的时候，他就输掉。问谁会获胜？每堆石子的数量小于等于 $10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{【CERC2017】Buffalo Barricades}
+	\subsection*{【题解】}
+	
+	考虑一堆石头会转移到哪些状态，注意到 $M\le 10^{2.5}$ 时，总的方案数当然在 $10^{2.5}$ 级别；当 $M> 10^{2.5}$ 时，每堆石头的总数也都小于等于根号，可以直接枚举 $x=\left\lfloor\frac NM\right\rfloor$，然后判断 $N-xy\left(y\in\left[\frac Nx, \frac{N}{\lfloor\frac Nx\rfloor}\right]\right)$ 的奇偶性。
+	
+	总复杂度 $O(V^{1.5})$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/90607712。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【JLOI2014】镜面通道}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P3260。
+	
+	在一个二维平面上，有一个镜面通道，由镜面 $AC, BD$ 组成，$AC, BD$ 长度相等，且都平行于 $x$ 轴，$B$ 位于 $(0,0)$。
+	
+	通道中有 $n$ 个外表面为镜面的光学元件，光学元件 $\alpha$ 为圆形，光学元件 $beta$ 为矩形（这些元件可以与其他元件和通道有交集，具体看下图）。光线可以在 $AB$ 上任一点以任意角度射入通道，光线不会发生削弱。当出现元件与元件，元件和通道刚好接触的情况视为光线无法透过（比如两圆相切）。
+	
+	现在给出通道中所有元件的信息（$\alpha$ 元件包括圆心坐标和半径 $x_i, y_i, r_i$，$\beta$ 元件包括左下角和右上角坐标 $x_1, y_1, x_2, y_2$），请求出至少拿走多少个光学元件后，存在一条光线线路可以从 $CD$ 射出。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先猜想只要左侧和右侧连通就一定能找到光路。那么我们对每个原件建一个点，记底部为 $S$，顶部为 $T$，在有相交或相切的两个元件之间连边，那么问题就转化为了点最小割。
+	
+	把每个点拆成两个点（之间为容量 $1$ 的边），每条边拆成两条边（容量 $+\infty$）即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/90628002。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【SDOI2016】平凡的骰子}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P4080。
+	
+	这是一枚平凡的骰子。它是一个均质凸多面体，表面有 $n$ 个端点，有 $f$ 个面，每一面是一个凸多边形，且任意两面不共面。将这枚骰子抛向空中，骰子落地的时候不会发生二次弹跳（这是一种非常理想的情况）。
+	
+	你希望知道最终每一面着地的概率。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先我们如何求出重心的位置？对于多边形，我们可以三角剖分，三角形的重心就是三点的平均点，然后加权平均得到总的重心；对于多面体，我们可以四棱锥剖分，四棱锥的重心就是四点的平均点，总质量等比于体积可以用行列式算出来，然后求加权平均。
+	
+	然后对于每一面，三角剖分成三角形，然后用题面中的公式算出每个三角形对应的球表面积，求出总的那一面对应的球表面积。对于公式中二面角的求值，可以找两个向量外积得出一个面的法向量，然后用内积求出两个法向量之间的夹角。
+	
+	复杂度线性于输入。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/90962381。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【SDOI2016】平凡的骰子}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P4080。
+	
+	这是一枚平凡的骰子。它是一个均质凸多面体，表面有 $n$ 个端点，有 $f$ 个面，每一面是一个凸多边形，且任意两面不共面。将这枚骰子抛向空中，骰子落地的时候不会发生二次弹跳（这是一种非常理想的情况）。
+	
+	你希望知道最终每一面着地的概率。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先我们如何求出重心的位置？对于多边形，我们可以三角剖分，三角形的重心就是三点的平均点，然后加权平均得到总的重心；对于多面体，我们可以四棱锥剖分，四棱锥的重心就是四点的平均点，总质量等比于体积可以用行列式算出来，然后求加权平均。
+	
+	然后对于每一面，三角剖分成三角形，然后用题面中的公式算出每个三角形对应的球表面积，求出总的那一面对应的球表面积。对于公式中二面角的求值，可以找两个向量外积得出一个面的法向量，然后用内积求出两个法向量之间的夹角。
+	
+	复杂度线性于输入。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/90962381。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【JOISC 2021 Day3】ビーバーの会合 2}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P7565。
+	
+	给定一棵有 $N$ 个点的树，每一个点上有一个人，这些人要开秘密会议。
+	
+	假设一次秘密会议有 $P$ 个人参加，这 $P$ 个人分别在第 $p_1,p_2,\cdots,p_P$ 个点上。如果点 $k$ 满足下面这个值最小（$d(a,b)$ 为点 $a$ 到点 $b$ 的距离，$k$ 不需要满足 $k \in \{p_1,p_2,\cdots,p_P\}$）：
+	
+	$$\sum\limits_{i=1}^Pd(k,p_i)$$
+	
+	那么就称第 $k$ 个点为可期待的，这场会议的期待值即为所有点中中可期待点的个数。
+	
+	对于每个 $j \in [1,N]$，求当会议里有 $j$ 个人的时候，会议的期待值的最大值是多少。$N\le 2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先相当于找到一条极长的链，满足其两侧子树大小的 $\min\times 2$ 能达到参会人数。我们在启发式合并的过程中维护，考虑重<轻、重>轻、轻<轻、重<祖先、重>祖先、轻<祖先、轻>祖先等情况，结合离线建线段树处理重儿子的方法就可以 $O(n\log^2n)$。
+	
+	实际上我们只要按照 $\min(sz,n-sz)$ 从小到大加入边，维护每个连通块的直径（合并直径可以枚举六种搭配）即可 $O(n\log^2n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/89241848。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CERC2013】Captain Obvious and the Rabbit-Man}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P7016。
+	
+	定义 $p_i=\sum\limits_{j=1}^ka_j\times F_j^i$。现在给定 $k,m$ 以及 $\{p_i\}_{i=1}^k$，请求出 $p_{k+1}\bmod m$。（$F$ 为斐波那契数列）。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	这玩意显然是要你用 $p_{1\sim k}$ 线性表出 $p_{k+1}$，有一种很神仙的构造是另 $A(x)=\prod_{i=1}^n(x-F_i)$，然后把 $1,2,3,5,\cdots$ 带进去并求和。
+	
+	比较能想的做法是，这个玩意是一个范德蒙德矩阵，而范德蒙德矩阵的逆矩阵有个式子，可以通过 dp 得出。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/89748940。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF898E】Mod Mod Mod}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF889E。
+	
+	$$f(x,n) = x \mod a_n$$
+	
+	$$f(x,i) = ( x \mod a_i ) + f(x \mod a_i,i+1)$$
+	
+	给出 $a$ 序列，当 $x$ 取遍所有非负整数时 $f(x,1)$ 的最大值。$n\le 2\times 10^5, a_i\le 10^{13}$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	注意到一个 $x$ 最多被操作 $log_2(a)$ 次。而这个 $x$ 一定会使某个 $x_i$ 恰好顶到 $a_i-1$。
+	
+	如果枚举这个 $a_i-1$ 是在哪里顶到的，那后半部分的贡献相当好计算，但是前半部分的贡献我们发现很难计算，甚至可能需要一个 dp。
+	
+	所以我们还是考虑正着做，考虑一个 $x$ 在前 $i$ 个的贡献和为 $g(x,i)$，另 $x\leftarrow x-1$，则 $g(x,i)\leftarrow g(x,i)-i+???$。我们不妨把 $???$ 放缩掉，因为当它会产生 $???$ 时，也就对应了那个 $x_i$ 恰好为 $a_i-1$。
+	
+	于是我们就可以定于一个 dp 数组 $h$，记 $h_{i,R}$ 表示 $x_i=R$ 时，$g(x,i)-ik$ 这个一次函数的最大一次项是多少。只做这两种转移：1. 对于 $R>a_{i+1}$，转移向 $R\bmod a_{i+1}$；2. 对于 $R=a_{i+1}-1$，从大于等于它的第一个值转移来；而对于 $a_{i+1}<R$，其一次项显然不变。
+	
+	这个 dp 数组可以涵盖所有需要的 dp 值，也就依赖于上两段中的那个性质。$O(n\log^2(a))$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/89943431。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{Nim 积}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://loj.ac/p/179。
+	
+	对于两个非负整数 $x, y$ 我们定义其 Nim 积 $x\otimes y$：
+	
+	$$
+	x \otimes y = \operatorname {mex} \{ (a\otimes b) \oplus (a\otimes y) \oplus (x\otimes b) \mid 0\le a < x \wedge 0\le b < y  \}
+	$$
+	
+	生成的数据均在 $2^{32}$ 范围以内，故保证 $0\le x, y < 2^{32}$。四组数据中的 $T$ 分别为 $10, 1000, 3\times 10^4, 3\times 10^7$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	有以下几个关键性质：
+	
+	$$
+	2^{2^k}\otimes x=2^{2^k}\cdot x (x<2^{2^k})\\
+	2^{2^k}\otimes 2^{2^k} = \frac 32 2^{2^k}\\
+	$$
+	
+	根据分配律，将 $x\otimes y$ 拆成 $\log^2$ 个 $2^{x’}\otimes 2^{y'}$，再将 $2^{x’}\otimes 2^{y'}$ 拆成：$\left(\prod 2^{2^{x_i}}\right)\otimes \left(\prod 2^{2^{y_i}}\right)$。
+	
+	考虑若 $x'$ 和 $y'$ 的最高位相同，那么答案 $\otimes $ 上 $\frac 23 2^{2^{\mathrm{highestBit}}}$；否则，答案 $\otimes $ 上 $2^{2^{\mathrm{highestBit}}}$。递归下去计算即可。
+	
+	为了加速，我们可以预处理出所有 $x$ 中的 $4$ 位和 $y$ 中的 $4$ 位的 Nim 积，即可做到单次 $O(16)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://loj.ac/s/1608964。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【北京省选集训2019】图的难题}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P5295。
+	
+	书上画出了一张无向图，要求把边染成黑白两色，要求所有白色边构成的子图没有环，且所有黑色边构成的子图没有环。  
+	小 D 无论怎样尝试都觉得书上的问题没有解，她想请你帮她确认一下。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	我们大胆猜想如果每张导出子图都满足边数小于等于 $2\times$ 点数 $-2$，那么就一定有解。问题就变为了一个最大非空闭合子图问题。
+	
+	可以强制某个边满流并多次跑最大流来完成；也可以通过退流，以不增加的时间复杂度完成此问题。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/90388457。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{「CCO 2018 Day2」Flop Sorting}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://loj.ac/p/3519。
+	
+	给定一个 $1$ 到 $N$ 的排列 $a_i$，我们规定一次「翻牌」操作表示交换一个区间的最小值与最大值的位置。现在给定你 $Q$ 次翻牌操作，每次对 $[l,r]$ 执行翻牌操作，求进行 $Q$ 次翻牌操作后的最终序列。
+	
+	现在给定了 $N$，初始序列 $a_i$ 和最终序列，求中间要进行的翻牌操作。$1 \le a_i \le N \le 4096$，$1 \le Q \le 3 \times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	写了个乱搞做法，摁艹，艹不过去啊。
+	
+	正解考虑归并排序，但是这个归并相当难归并，我们考虑再用一个类似归并形状的东西来处理归并——把左区间的一个后缀翻转，右区间的一个前缀翻转，使得中间它们正好接上；然后把它们一起翻转，然后就变成了左边的两个有序数列和右边的两个有序数列的归并。
+	
+	据说时间复杂度是 $O(n\log n)$，但我不会证，而且莫名其妙地拿了最优解。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://loj.ac/s/1609113。
+	
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
