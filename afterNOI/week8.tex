@@ -1,0 +1,441 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{CJKfntef}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{amsmath,amssymb}
+\usepackage{tabu}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=green,bookmarks=true]{hyperref}
+%\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{bookmark}
+\usepackage{inconsolata}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage[ruled,linesnumbered]{Algorithm2e}
+\setlength{\parindent}{2em}
+\geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
+\setcounter{secnumdepth}{0}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{xcolor}
+\usepackage{endnotes}
+\usepackage{multirow}
+\usepackage{notoccite}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}                   
+\usepackage{CJKfntef}        
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{black}
+		\textbf
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\newcommand{\stress}[1]{\textbf{\CJKunderdot{#1}}}
+
+\definecolor{mys}{rgb}{1,0.2,0}%一个颜色
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\lstset{
+	numberstyle=\ttfamily\color{codegray}
+}
+
+\linespread{1.5}%修改行距
+
+% \titleformat{\subsection}{\fontsize{13}{16}}
+
+% \begin{lstlisting}
+	% \end{lstlisting}
+
+%%%my packages
+\usepackage{hyperref}% Links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mys,
+	urlcolor=blue
+}
+% \usepackage{pseudo}% Pseudo Code
+
+\title{标题（无实际意义）}
+\author{作者（无实际意义）}
+\date{日期时间（无实际意义）}
+
+\begin{document}
+	\fontsize{12pt}{12pt}\selectfont
+	
+	\newpage
+	\pagestyle{fancy}
+	\lhead{\footnotesize \songti{信息学一周解题报告汇总\ \ \ -LSH}}
+	\cfoot{\footnotesize 第 \thepage \ 页\qquad  共  \pageref{LastPage} 页}
+	
+	\phantomsection
+	\addcontentsline{toc}{section}{}
+	\rhead{\footnotesize \songti{第七周\ \ \ 2022.10.30 $\sim$ 2022.11.5}}
+	
+	
+	\section*{【清华集训 2014】玛里苟斯}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/36。
+	
+	$S$ 是一个可重集合，$S=\{a_1,a_2,\cdots,a_n\}$。
+	
+	等概率随机取 $S$ 的一个子集 $A$。
+	
+	计算出 $A$ 中所有元素异或和 $x$, 求 $x^k$ 的期望。
+	
+	$n\le 10^5,k\le 5$，保证答案小于 $2^63$，要求输出精确小数答案。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	一种脑子有问题的方法是：把 $x^k$ 拆开来：
+	
+	$$
+	\begin{aligned}
+		x^k
+		&= \sum_{i_1,i_2,\cdots, i_k} \prod_{j=1}^k \left(x \operatorname{and} 2^{i_j}\right)\\
+		&= \sum_{i_1,i_2,\cdots, i_k} 2^{\sum_{j=1}^k i_j} \prod_{j=1}^k\left[x \operatorname{and} 2^{i_j} \neq 0\right]
+	\end{aligned}
+	$$
+	
+	枚举了 $i$ 后，问题就变成了求这些位上都等于 $1$ 的概率，也就可以把所有的数只保留 $i$ 中的位。对于所有相同的数，显然只要保留一个！因为恰好有一半的情况里它的贡献是 $1$！
+	
+	根据答案小于 $2^63$，可以算出复杂度是 $O\left(\min(n,\frac{63}k)\cdot\binom{\frac{63}{k}+k-1}{k}\right)$，通过精湛的卡常可以通过。
+	
+	事实上，子集异或的事情只要不是集合幂级数学傻了，就应该意识到每个在其线性基内的数的出现次数都等于 $2$ 的自由元个数次方！对于 $k\ge 3$ 采取暴力遍历线性基即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/590211。
+	
+	% -----------------------------------------------------------------------------------
+	
+	
+	\section*{【清华集训 2014】主旋律}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/37。
+	
+	给定一张有向图，求其强连通生成子图个数。$n\le 15$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	强连通的条件是，缩点后，不存在一个 $0$ 入度的非全集的强连通分量，也就是这个强连通分量入度为 $0$ 的集合是空集。
+	
+	我们直接容斥这个入度为 $0$ 的集合，记 $f_S$ 表示 $S$ 导出子图有多少个生成子图强连通，$g_S$ 表示把 $S$ 拆分成 $T_1,T_2,\cdots,T_k$ 的 $(-1)^k\cdot \prod f_{T_i}$ 的和，然后就能自然转移。
+	
+	求两个集合之间的边数，可以利用 bitmask 做到总复杂度 $O(3^n\cdot n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/590164。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【清华集训 2014】虫逢}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/45。
+	
+	给定一个基因集合（大小为 $M$），$N$ 个生物，每个生物都有 $L$ 基因（\textbf{保证数据随机选取}）。然后每个生物都分裂成了两个生物，一个保留原有基因，一个有恰好一半的基因被随机替换为了它\textbf{本来没有}的基因。现在把这 $2N$ 个生物打乱告诉你，你要帮忙两两配对。$N=M=L^2\in [400,16900]$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	本题读题难度非常大，由于数据完全随机且 $L$ 集合相当大，可以视为两两配对是确定的，不存在一个一般图最大匹配的问题！
+	
+	暴力 check 肯定是要 TLE 的，那这时的思路肯定是用一些 Hash 之类的信息来先划分等价类，然后只 check 等价类之内的信息，以减少 check 次数。
+	
+	我们给基因库随机一个排列，令每个生物的值为它的基因里最靠前的一个，那么同源的两个生物值相等的概率是 $\frac 13$，不同源的值相同的概率是 $\frac 1L$。这还不够，再给它加上双哈希，冲撞率进一步降低，每次可以将 $N$ 降低 $\frac 19$。可以通过。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/590159。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1225G】To Make 1}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1225G。
+	
+	合并 $n(n\le 16)$ 个整数为 $1$ 个，合并 $x$ 和 $y$ 时将会删除 $x$ 和 $y$ 然后加入一个整数 $f(x+y)$，其中
+	
+	$$
+	f(x)=\left\{ \begin{aligned} &f\left(\small \frac xk\right) , k|x \\&x,\text{otherwise} \end{aligned}\right.
+	$$
+	
+	如果最后留下的数字可以为 $1$，输出 YES 并输出方案（每次是哪两个数字合并）。否则输出 NO。保证 $k \nmid a_i$ 且 $\sum a_i \le 2000$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	事实上，我们就是要寻找一组 $b_{1\sim n}$，使得 $\sum a_i\cdot k^{-b_i}=1$。
+	
+	证明（充分）：对于每种合法方案，可以还原出一组系数 $b$。
+	
+	证明（必要）：从 $b$ 中可以递归地还原出方案，因为 $k\nmid a_i$，而根据 $k^{\max b}=\sum_{i=1}^n a_i^{\max b - b_i}$，$b_i=\max b_i$ 的数不可能只有一个，否则等式两边模 $k$ 的值一定不同！所以可以合并这两个，然后递归下去构造。
+	
+	如果改成选 $k$ 个数，合并成和除 $k$ 的话，那其实就再加上一个限制条件 $\sum k^{-b_i}=1$。
+	
+	那剩下的 dp 其实就相当简单了，设 $f_{S, i}$ 表示合并了集合 $S$ 和为 $i$ 是否可以，一种是 $f_{S}$ 向 $f_{S\cup u}$ 转移，一种是 $f_S$ 内部全部尽可能除以 $k$ 的转移。用 bitset 优化即可，输出方案就按照上面证明的那样去递归构造。
+	
+	复杂度 $O\left(\frac{n\cdot 2^n\cdot \sum a}{w}+2^n\cdot \sum a \right)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/92669335。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1149D】Abandoning Roads}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1149D。
+	
+	一张 $n$ 个点 $m$ 条边的无向图，只有 $a,b$ 两种边权（$a<b$），对于每个 $i$，求图中所有的最小生成树中，从 $1$ 到 $i$ 距离的最小值。$n\le 70,m\le 200$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	只保留 $a$ 的边，可以先求出连通块和连通块内部的全源最短路，然后再考虑上 $b$ 的边去找 $1$ 到 $i$ 的最短路，但是要加上一个限制——不同两次进入同一个连通块。
+	
+	我的解决方案是 A*，拿下最优解。
+	
+	更为靠谱的方案是，会重复经过的连通块，至少有 $4$ 个点，所以只状压这些连通块，复杂度 $2^{\frac n4}$ 左右。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/92653970。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1149E】Election Promises}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1149E。
+	
+	在 Byteland，两个党派——WA 党和 TLE 党，他们都在不停地承诺降税。
+	
+	Byteland 有 $n$ 个城市，$m$ 条单行道，并且不能从一个城市出发又回到这个城市。竞选开始前，第 $i$ 个城市的税收是非负整数$h_i$。
+	
+	一次拉票的过程：这个党派会来到一个城市 $x$，承诺会将这个城市的税收**降低**为一个非负整数。同时，这个党派可以将从 $x$ 走一条单行道可以直达的城市的税收做任意更改，变高变低都行，但还得保证该城市的税收是非负整数。
+	
+	两党交替拉票，无法执行一次拉票的党派会输。问胜负。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	求出原图上每个点的 $SG$ 值，如果对于每个 $x$，都有 $\oplus_{u=1}^n[SG_u = x]h_u=0$，那么先手必败；否则先手必胜。
+	
+	证明就相当容易了，找到最大的异或和不为 $0$ 的 $x$，它一定能把所有的 $x$ 都一并改成 $0$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/92602582。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1698G】Long Binary String}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1698G。
+	
+	现有一个无穷大的 $01$ 序列，初始全为 $0$。给定一个有限的 $01$ 序列 $S$，每次操作可以将原序列一个长为 $|S|$ 的子段异或上  $S$ ，最终需要使得整个序列只有两个 $1$。
+	
+	问最终字典序最大的序列的两个 $1$ 分别所处的位置。$|S| \le 35$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	左边那个 $1$ 显然是 $\operatorname{lowbit}(S)$，在此之后显然可以把 $S$ 的低位的 $0$ 全部去掉。
+	
+	显然一个位置只会被异或上最多一次，把每个位置是否要异或记录下来为 $F$ 数组，那实际上我们就可以把这个过程看作是一个生成函数的乘法！也就是求最小的 $k$ 使得：
+	
+	$$
+	x^k+1=S(x)\cdot F(x)
+	$$
+	
+	不妨视作：
+	
+	$$
+	x^k=1 \pmod{S}
+	$$
+	
+	BSGS 即可！
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/92599215。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1257G】Divisor Set}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1257G。
+	
+	给一个数 $m$ 的质因子分解 $m=\prod_{i=1}^np_i$，找出一个最大的集合 $S$ 满足 $\forall x\in S,\,x\mid m$ 且 $\forall x,\,y\in S,\,x\nmid y\;(x\neq y)$ 。
+	
+	输出 $|S|\bmod 998244353$ 。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	当每个素数两两不同的时候，显然是取 $\left\lfloor\frac n2\right\rfloor$ 个最优。
+	
+	猜想：一般情况下仍然是取 $\left\lfloor\frac n2\right\rfloor$ 个最优，再去重。
+	
+	为了计算这种策略方案数，可以用一个分治 NTT 来计算。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/92546117。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【ZJOI2015】地震后的幻想乡}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P3343。
+	
+	一张无向图，每条边的权值在 $[0,1]$ 之间随机，求最小生成树的最大边的大小的期望。$n\le 10$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	设 $P(x)$ 为最大边小于等于 $x$ 的概率，那么答案就是 $1-\int P(x)\texttt{d}x$。
+	
+	显然 $P(x)$ 是一个关于 $x^i\cdot (1-x)^{m-i}$ 的多项式，系数为 $i$ 条边能使得图连通的方案数。
+	
+	那么跑一个集合幂级数 $\ln$ 形状的 dp 就行了！
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/92375444（次优解）。
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

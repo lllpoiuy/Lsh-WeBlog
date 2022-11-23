@@ -1,0 +1,363 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{CJKfntef}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{amsmath,amssymb}
+\usepackage{tabu}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=green,bookmarks=true]{hyperref}
+%\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{bookmark}
+\usepackage{inconsolata}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage[ruled,linesnumbered]{Algorithm2e}
+\setlength{\parindent}{2em}
+\geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
+\setcounter{secnumdepth}{0}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{xcolor}
+\usepackage{endnotes}
+\usepackage{multirow}
+\usepackage{notoccite}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}                   
+\usepackage{CJKfntef}        
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{black}
+		\textbf
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\newcommand{\stress}[1]{\textbf{\CJKunderdot{#1}}}
+
+\definecolor{mys}{rgb}{1,0.2,0}%一个颜色
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\lstset{
+	numberstyle=\ttfamily\color{codegray}
+}
+
+\linespread{1.5}%修改行距
+
+% \titleformat{\subsection}{\fontsize{13}{16}}
+
+% \begin{lstlisting}
+	% \end{lstlisting}
+
+%%%my packages
+\usepackage{hyperref}% Links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mys,
+	urlcolor=blue
+}
+% \usepackage{pseudo}% Pseudo Code
+
+\title{标题（无实际意义）}
+\author{作者（无实际意义）}
+\date{日期时间（无实际意义）}
+
+\begin{document}
+	\fontsize{12pt}{12pt}\selectfont
+	
+	\newpage
+	\pagestyle{fancy}
+	\lhead{\footnotesize \songti{信息学一周解题报告汇总\ \ \ -LSH}}
+	\cfoot{\footnotesize 第 \thepage \ 页\qquad  共  \pageref{LastPage} 页}
+	
+	\phantomsection
+	\addcontentsline{toc}{section}{}
+	\rhead{\footnotesize \songti{第九周\ \ \ 2022.11.6 $\sim$ 2022.11.12}}
+	
+	
+	\section*{【Goobye XinChou】马超战潼关}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/704。
+	
+	给定一张 $S$ 连到所有左部点、左部点部分连向部分右部点、右部点全部连向 $T$ 的边不带权的二分图，问它的边最小割方案数。左右侧点数均 $\le 46$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先第一个观察就相当难以理解，求出一组最大匹配，每个匹配对应着三条边，这三条边中只会选一条，且选出的一定是匹配中的边。
+	
+	记匹配的三条边分别为 $0,1,2$，用 $a_u=0/1/2$ 表示这个匹配选出的那条边。
+	
+	而对于不在匹配中的边：
+	
+	\begin{itemize}
+		\item 若两端点分别维护匹配 $u,v$ 中，则推出 $a_u=0$ 或者 $a_v=2$。
+		\item 若 $u$ 位于匹配中，则 $a_u=0$。
+		\item 若 $v$ 位于匹配中，则 $a_v=2$。
+	\end{itemize}
+
+	那么不难发现，只考虑 $1,2$ 构成的图，$1$ 可以是其中所有 $0$ 度点且彼此独立，方案数为 $2$ 的零度点个数次方。借助折半搜索和 fmt 即可做到 $O(2^{\frac n2}\cdot n^2)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/591116（一个 80 分的搜索）。
+	
+	% -----------------------------------------------------------------------------------
+	
+	
+	\section*{【清华集训 2015】静态仙人掌}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/158。
+	
+	给定一棵有根的仙人掌，每个点上有 $0$ 或者 $1$，三种操作：
+	
+	\begin{itemize}
+		\item [1.] 翻转一个点到根的最短简单路。
+		\item [2.] 翻转一个点到根的最长简单路。
+		\item [3.] 子树求和。
+	\end{itemize}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	最简单的做法：直接求出每个点对应的两种路径的 bitset，即可做到 $O(\frac {n^2}{w})$。
+	
+	复杂做法：把点简单分类一下，利用树剖可以解决（某静态的超仙人掌）。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/590995。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【清华集训 2015】小Q与找茬}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/157。
+	
+	平面上有 $n$ 个点，多次询问矩形，你每次需要输出尽可能多的矩形内的点，不要求全部输出。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	range-tree 加分散层叠可以轻松通过；事实上由于数据难以构造等原因，平面分块可以相当简洁且优秀。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/590983。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【Goobye XinChou】黄忠庆功宴}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/705。
+	
+	给定一个数列，多次询问，每次询问给定 $x,l,k$，问 $\sum_{i=0}^{l-1}a_{(x+ik)\bmod n}$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	对于 $k\le n^{0.5}$，我们可以预处理出所有的公差的前缀和。
+	
+	对于其它的，我们整体考虑。设 $id=x+ik$，则 $i=\frac{id-x}k$，即 $id$ 会计入贡献的条件为 $(id-x)\cdot k^{-1}\bmod n < l$。
+	
+	注意到每 $\frac{n}{k^{-1}}$ 会分一段，则一共会划分成 $O(k^{-1})$ 个公差为 $1$ 的等差数列。
+	
+	我们把上面的两个做法结合一下，设 $k=\frac xy$，一定可以使 $x,|y|\le n^{0.5}$，对于每个 $x$ 先预处理出前缀和，然后询问的时候 $O(y)$ 询问即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/590974。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【清华集训 2014】简单回路}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/39。
+	
+	在一个有障碍点的 $n$ 行 $m$ 列的网格图中，如果该网格图中的回路满足下面两个条件：
+	
+	\begin{itemize}
+		\item 不经过任何一个障碍点
+		\item 回路不自交
+	\end{itemize}
+	
+	则我们称该回路为合法的简单回路。
+	
+	现在有 $Q$ 个询问，每次询问有多少条合法的简单回路经过了 $(x,y)$ 与 $(x+1,y)$ 之间的边。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	进行一次前缀插头 dp 和一次后缀插头 dp，询问的时候暴力合并即可。主要是收获了一些精细实现插头 dp 的经验。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/590670。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【清华集训 2014】玄学}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/46。
+	
+	一个序列，若干个操作，强制在线：
+	
+	\begin{itemize}
+		\item [1.] 新增一个修改，它会给区间 $[l,r]$ 内的所有点带来不可逆、不可交换、有结合律的一个操作。
+		\item [2.] 询问如果一次执行操作 $[l,r]$，序列上的 $k$ 位置会被改成什么。
+	\end{itemize}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	其实只要维护一个对时间的线段树，线段树上的每个结点上的所有操作会把序列划分成若干个区间，区间内的所有数相同。我们只要记下区间的所有左右端点即可。
+	
+	随着线段树逐渐被填充，层层向上归并，并分散层叠，即可做到完全的单 $\log$ 时空。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/590475。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{克莱茵蓝彼岸花}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://loj.ac/p/6786。
+	
+	千寻、眠雪给了你 $n$ 个「书本」，每个「书本」有四个「属性」$a_i,b_i,c_i,d_i$.
+	
+	形式化地来说，你需要将「书本」划分为三个**非空**集合 $S_1,S_2,S_3$，**最小化**目标函数 $\mathbf{\Xi}$，定义为：
+	
+	$$
+	\mathbf{\Xi}=\left(\max_{x=1}^3\max_{i\in S_x}a_i\right)\times\left(\sum_{x=1}^3\max_{i\in S_x}b_i\right)\times\left(\max_{x=1}^3\sum_{i\in S_x}c_i\right)\times\left(\sum_{x=1}^3\sum_{i\in S_x}d_i\right)
+	$$
+	
+	求出目标函数的**最小**可能值.
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先按照 $b$ 排序，相当于把序列分成三段，第一段全部属于 $S_1$，第二段属于 $S_1$ 或 $S_2$，第三段属于 $S_1$ 或 $S_2$ 或 $S_3$。
+	
+	优化枚举，首先枚举第三段的长度，从短到长枚举，顺带维护一个二维 $0/1$ 背包；然后从短到长枚举第二段的长度，维护一个背包，然后利用 bitset 等来优化，再加上各种各样的剪枝，可以通过。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://loj.ac/s/1628362（高居最优解）。
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
