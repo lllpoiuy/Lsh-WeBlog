@@ -9,6 +9,8 @@
 | [信息学一周解题报告汇总 -第五、六周 2022.10.9 ∼ 2022.10.22](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week5and6.pdf) |
 | [信息学一周解题报告汇总 -第五、六周（正睿） 2022.10.9 ∼ 2022.10.22](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week5and6id2.pdf) |
 | [信息学一周解题报告汇总 -第七周 2022.10.23 ∼ 2022.10.29](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week7.pdf) |
+| [信息学一周解题报告汇总 -第八周 2022.10.30 ∼ 2022.11.5](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week8.pdf) |
+| [信息学一周解题报告汇总 -第九周 2022.11.6 ∼ 2022.11.12](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week9.pdf) |
 
 | nsyc2022                                                     |                                                              |                                                              |                                                              |                                                              |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -51,3 +53,6 @@
 ### 翻译成果：
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
+
+
+
