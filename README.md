@@ -1,5 +1,19 @@
 # INDEX
 
+| ahsfnu_wekry                                                 |                                                              |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [week1](https://lllpoiuy.github.io/Lsh-WeBlog/ahsfnu_wekry/week1.html) | [week2](https://lllpoiuy.github.io/Lsh-WeBlog/ahsfnu_wekry/week2.html) | [week3](https://lllpoiuy.github.io/Lsh-WeBlog/ahsfnu_wekry/week3.html) | [week4](https://lllpoiuy.github.io/Lsh-WeBlog/ahsfnu_wekry/week4.html) |
+| [week5](https://lllpoiuy.github.io/Lsh-WeBlog/ahsfnu_wekry/week5.html) | [week6](https://lllpoiuy.github.io/Lsh-WeBlog/ahsfnu_wekry/week6.html) | [week7-1](https://lllpoiuy.github.io/Lsh-WeBlog/ahsfnu_wekry/week7.html) | [week7-2](https://lllpoiuy.github.io/Lsh-WeBlog/ahsfnu_wekry/test.pdf) |
+
+| nfls_diary                                                   |                                                              |                                                              |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [2023.01.26](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.01.26.pdf) | [2023.01.27](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.01.27.pdf) | [2023.01.28](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.01.28.pdf) | [2023.01.29](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.01.29.pdf) | [2023.01.30](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.01.30.pdf) |
+| [2023.01.31](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.01.31.pdf) | [2023.02.01](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.01.pdf) | [2023.02.02](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.02.pdf) | [2023.02.03](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.03.pdf) | [2023.02.04](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.04.pdf) |
+| [2023.02.05](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.05.pdf) | [2023.02.06](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.06.pdf) | [2023.02.07](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.07.pdf) | [2023.02.08](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.08.pdf) | [2023.02.09](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.09.pdf) |
+| [2023.02.10](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.10.pdf) | [2023.02.11](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.11.pdf) | [2023.02.12](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.12.pdf) | [2023.02.13](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.13.pdf) | [2023.02.14](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.14.pdf) |
+| [2023.02.15](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.15.pdf) | [2023.02.16](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.16.pdf) | [2023.02.17](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.17.pdf) | [2023.02.18](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.18.pdf) | [2023.02.19](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.19.pdf) |
+| [2023.02.20](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.20.pdf) | [2023.02.21](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.21.pdf) | [2023.02.22](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.02.22.pdf) | [2023.03.01](https://lllpoiuy.github.io/Lsh-WeBlog/nfls_diary/2023.03.01.pdf) |                                                              |
+
 | before_NOI_2023：                                            |
 | ------------------------------------------------------------ |
 | [信息学一周解题报告汇总 -第一周 2022.9.5 ∼ 2022.9.11](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week1.pdf) |
@@ -11,6 +25,7 @@
 | [信息学一周解题报告汇总 -第七周 2022.10.23 ∼ 2022.10.29](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week7.pdf) |
 | [信息学一周解题报告汇总 -第八周 2022.10.30 ∼ 2022.11.5](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week8.pdf) |
 | [信息学一周解题报告汇总 -第九周 2022.11.6 ∼ 2022.11.12](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week9.pdf) |
+| [信息学一周解题报告汇总 -第十周 2023.11.28 ∼ 2022.12.4](https://lllpoiuy.github.io/Lsh-WeBlog/afterNOI/week10.pdf) |
 
 | nsyc2022                                                     |                                                              |                                                              |                                                              |                                                              |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -53,6 +68,3 @@
 ### 翻译成果：
 
 [STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
-
-
-
