@@ -1,0 +1,504 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{CJKfntef}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{amsmath,amssymb}
+\usepackage{tabu}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=green,bookmarks=true]{hyperref}
+%\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{bookmark}
+\usepackage{inconsolata}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage[ruled,linesnumbered]{Algorithm2e}
+\setlength{\parindent}{2em}
+\geometry{left=2.45cm,right=2.45cm,top=2.75cm,bottom=2.6cm}
+\setcounter{secnumdepth}{0}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{xcolor}
+\usepackage{endnotes}
+\usepackage{multirow}
+\usepackage{notoccite}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabu}
+\usepackage{xeCJK}
+\usepackage{CJK}                   
+\usepackage{CJKfntef}        
+\usepackage{fancyhdr}               
+\usepackage{graphicx}                 
+\usepackage{lastpage}    
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{layout}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\lstset{
+	basicstyle={      
+		\color{black}
+		\fontspec{Consolas}
+	},
+	keywordstyle={
+		\color{blue}
+		\fontspec{Consolas}
+	},
+	numberstyle={
+		\color{black}
+		\textbf
+	},
+	rulecolor=\color{blue},
+	numbers=left,                               
+	frame=single,                            
+	frameround=tttt,
+	morekeywords={Sample, Input, Output},   % 可以手动添加关键字
+}
+\setmonofont{Consolas}
+\newcommand{\stress}[1]{\textbf{\CJKunderdot{#1}}}
+
+\definecolor{mys}{rgb}{1,0.2,0}%一个颜色
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\lstset{
+	numberstyle=\ttfamily\color{codegray}
+}
+
+\linespread{1.5}%修改行距
+
+% \titleformat{\subsection}{\fontsize{13}{16}}
+
+% \begin{lstlisting}
+	% \end{lstlisting}
+
+%%%my packages
+\usepackage{hyperref}% Links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mys,
+	urlcolor=blue
+}
+% \usepackage{pseudo}% Pseudo Code
+
+\title{标题（无实际意义）}
+\author{作者（无实际意义）}
+\date{日期时间（无实际意义）}
+
+\begin{document}
+	\fontsize{12pt}{12pt}\selectfont
+	
+	\newpage
+	\pagestyle{fancy}
+	\lhead{\footnotesize \songti{信息学一周解题报告汇总\ \ \ -LSH}}
+	\cfoot{\footnotesize 第 \thepage \ 页\qquad  共  \pageref{LastPage} 页}
+	
+	\phantomsection
+	\addcontentsline{toc}{section}{}
+	\rhead{\footnotesize \songti{第十周\ \ \ 2022.11.28 $\sim$ 2022.12.04}}
+	
+	11 月 30 日12 时 13 分，江泽民同志在上海因病离世。
+	
+	江泽民同志在《上海交通大学学报》2008 年第 10 期上发表论文《新时期我国信息技术产业的发展》，其中指出：
+	
+	\small\emph{信息技术是科技创新的前沿领域，深刻改变着人类的生产生活方式，也是新军事变革的核心驱动力；信息技术产业已成为国民经济的主导产业，成为国际竞争的战略制高点，也是促进可持续发展的重要力量。}\fontsize{12pt}{12pt}\selectfont
+	
+	除此之外，他还发表过：
+	\tiny{《美国、加拿大电子工业考察报告》(1983年8月10日)、《振兴我国电子工业》(1983年9月11日)、《逐步探索出一条中国式的电子工业发展之路》(1984年2月21日)、《电子工业对外贸易及其发展方针》(1984年8月20日)、《加快发展我国计算机工业》(1984年9月5日)、《振兴电子工业,促进四化建设》(1984年9月16日)、《开创电子工业为四个现代化建设服务新局面》(1985年1月28日)、《认真研究解决我国电子工业建设面临的问题》(1985年6月1日)、《我国电子工业发展战略问题》(1985年6月5日)、《论世界电子信息产业发展的新特点和我国电子信息产业的发展战略问题》(1989年5月26日)、《实现金融管理电子化》(1993年6月1日)、《加快发展我国的信息技术和网络技术》(2000年3月3日)、《在第十六届世界计算机大会开幕式上的讲话》(2000年8月21日)、《努力完成我军机械化和信息化建设的双重历史任务》(2000年12月11日)、《推动我国信息网络快速健康发展》(2001年7月11日)、《加快我国的信息化建设》(2001年8月25日)、《以信息化带动工业化,以工业化促进信息化》(2002年11月8日)、《建设信息化军队》(2002年12月27日)、《努力把握微电子、软件和计算机产业的技术主动权》(2006年12月10日)}\fontsize{12pt}{12pt}\selectfont 等报告、文章、论文。
+	
+	江泽民同志活到老，学到老，在晚年仍然能像年轻人一样去研究信息产业甚至撰写论文，与某些连智能手机是什么都不明白的脱离了民众、脱离了时代的老朽官吏形成鲜明对比。没有江泽民同志对信息产业的高度重视，就没有今天中国还不算太薄弱的信息技术产业。
+	
+	抛开乌云之上的政治不谈，江泽民同志的经历，足以印证毛主席提出的：\stress{（年轻人）以潜心多习自然科学为宜，社会科学辅之。将来可倒置过来，以社会科学为主，自然科学为辅。总之注意科学，只有科学是真学问，将来用处无穷}。
+	
+	
+	
+	\section*{【IOI2015】Sorting}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/233。
+	
+	给定一个排列。A 和 B 两个人轮流交换序列中的两个数，B 的目标是尽早将序列排好序。现在 B 已经知道了 A 的操作序列，现在你要求出 B 的最优策略。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	Hint 1：B 的决策具有可二分性，因为 A 的每次操作，B 都可以将其抵消。所以我们先二分。
+	
+	考虑 A 对排列带来的影响，它对排列进行了置换。也就是说，在第一轮中，B 的目标排列其实顺序排列经过了 A 的置换后的排列。
+	
+	我们二分，然后以顺序排列为初始状态，从后往前逆推出第一轮的 B 的目标排列。求出目标排列的给定排列的置换差 C。A 的每次操作都会交换 C 中的两个点，\stress{但是不改变 C 的形态}；B 的操作每次交换 C 中的两条边，只要把环一点点拆成退化环即可。
+	
+	$O(n\log n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/594010。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【ULR \#2】跳蚤猜密码}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/655。
+	
+	交互库藏有一个矩阵 $A$，你每次询问可以给定一个矩阵 $B$，交互库会返回 $\det(A+B) \bmod 998244353$。
+	
+	你需要在 $n^2$ 次询问内找到矩阵 $A$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	首先询问出 $\det(A)$。
+	
+	接下来 $n^2$ 次操作，每次询问一个 $B_{i,j}=1$，其它全是 $0$ 的矩阵，就能求出 $A$ 的余子式。
+	
+	把余子式转置后得到伴随矩阵，伴随矩阵再乘上 $\det(A)^{-1}$ 就能得到逆矩阵。
+	
+	但是我们发现多了一次操作，所以我们留下一个位置不操作，最后试着解出来。根据 $\det(A^{-1})=\det(A)^{-1}$，再求出那个矩阵的行列式，也便得到了关于未知位置的一个一元一次方程。
+	
+	唯独需要避免的是矩阵不满秩的情况，所以我们给所有的询问矩阵差分上一个随机矩阵。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/594013。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【清华集训 2016】石家庄的工人阶级队伍比较坚强}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/272。
+	
+	有 $3^m$ 个人在玩石头剪刀布。当 $x$ 和 $y$ 对决时，人的策略是按照自己的编号的三进制来依次出招。设 $W(x,y)$ 表示 $m$ 局里 $x$ 赢 $y$ 的次数，$L(x,y)$ 表示 $x$ 输给 $y$ 的次数。设第 $i$ 轮时 $j$ 的分数为 $f_{i,j}$，那么分数的递推方法是：
+	
+	$$
+	f_{i,j}=\sum_{k\in[0,n)} f_{i-1,k}\cdot b_{W(j,k),L(j,k)} \bmod p
+	$$
+	
+	给定 $f_0$ 和 $p$ 和 $b$ 矩阵。问 $f_t$。保证 $m\le 12,t\le 10^9$，不存在两个正整数的倒数和等于 $\frac{3}p$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	Hint：$p$ 为所有 $6k+1$ 型整数。
+	
+	$f$ 的这个形式，把 $m$ 局的胜负情况状压下来，这就是一个三进制的异或卷积。只要对每维分别乘上范德蒙德矩阵就行了，别忘了范德蒙德矩阵的逆矩阵是 $A_{i,j}=\frac 1n w_n^{-ij}$。
+	
+	只要用个 $x+yw_3$ 形式的高斯整数来完成运算就行，$3^m$ 的逆元肯定存在。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/594323。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【JOISC2020 】有趣的Joitter交友}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://uoj.ac/problem/505。
+	
+	在 Joitter 你可以关注他人，但你不可以关注自己和关注他人两次，即如果关注他人多次只会算作一次。
+	
+	共有 $N$ 名新用户，$M$ 天。在第 $i$ 天，用户 $A_i$ 会关注用户 $B_i$。
+	
+	交友活动是指：
+	
+	\begin{itemize}
+		\item[1.]选择一个用户 $x$。
+		\item[2.]选择一个被用户 $x$ 关注的用户 $y$。
+		\item[3.]选择一个用户 $z$，要求 $z\not=x$，$x$ 未关注 $z$ 且 $y$ 和 $z$ 互关。
+		\item[4.]让 $x$ 关注 $z$。
+		\item[5.]重复 $1,2,3,4$，直到选不出合适的三元组 $(x,y,z)$。
+	\end{itemize}
+	
+	您需要求出，对于每一个 $i$，如果在第 $i$ 天举办交友活动后，会有多少个关注关系。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	Hint 1：由于只有加边，所以不妨假设每天晚上都会进行一次交友活动。
+	
+	Hint 2：若 $x\rightarrow y$，则对于 $y$ 所在的连通块 $Y$，$\forall z\in Y$，都有 $x\rightarrow z$。
+	
+	所以我们试着维护所有的连通块。用 std::map<int, bool> 维护，对于每个连通块，有哪些点有连向这个连通块，有哪些连通块有连向这个连通块，这个连通块有连向哪些连通块，这个连通块里有哪些点。
+	
+	启发式合并的时候疯狂讨论，把新增的边数讨论清楚；它传导地合并了哪些连通块也可以在 dsu 的过程中维护，用个队列来依次合并这些连通块即可。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://uoj.ac/submission/594376。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【POI2011】LIZ-Lollipop}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/P3514。
+	
+	给定一个只由 $1$ 和 $2$ 构成的序列，多次询问是否存在一个区间的和等于 $k$ 并要求构造方案。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	先找到最短的大于等于 $k$ 的前缀 $[l_0=1,r_0]$，如果 $S_{l_0,r_0}=k$ 那么直接返回。否则我们考虑所有等于 $k+1$ 的区间 $[l_i,r_i]$，它们一定满足 $l_i>l_{i-1},r_i>r_{i-1}$，尺取法一般地移到了最后的 $[l_m,r_m=n]$。
+	
+	这其中如果存在某一个时刻，左端等于 $1$ 或者右端点等于 $1$，或者左端点等于 $2$ 但是右端点右侧的一个数等于 $1$，则可以微调出一个等于 $k$ 的区间。于是只要看区间 $[1,l_m+1]$ 中和 $[r_0-1,n]$ 是否存在一个 $1$ 即可。构造方案也很简单。
+	
+	预处理一个前缀和到位置的映射即可 $O(n+q)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/96390951。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1427G】One Billion Shades of Grey}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1427G。
+	
+	给定一个 $n \times n$ 的棋盘，其边界上所有位置均填好了数字，你需要在剩余 $(n - 2) \times (n - 2)$ 个位置上填数，部分位置已经“破损”，在输入时用 $-1$ 描述，此处无法填数。
+	
+	对于一种填数方案，定义一对相邻（四连通）的均不为“破损”的格子的贡献为其填入的数字的差值的绝对值，定义此填数方案的权值为各个相邻的格子的贡献之和。请求出可以得到的最小权值。
+	
+	保证 $3 \le n \le 200$，$-1 \le a_{i, j} \le {10}^9$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	绝对值作为非线性函数是很难直接考虑的，我们只能考虑每一段的“贡献”。设所有边界上的格子的值的集合为 $V$。
+	
+	Hint 1：每个格子的取值只能是 $v\in V$。
+	
+	Hint 2：假设所有值只有 $\le v_i$ 和 $\ge v_{i+1}$ 两种，然后跑最小割，最终的答案就是 $\sum\mathrm{mincut}\cdot (v_{i+1}-V_i)$。
+	
+	感觉其实和保序回归有点像。当然跑 $n$ 次最小割的复杂度肯定是接受不了的，所以我们借助退流来加速。
+	
+	由于每次流量只会改变 $1$，所以只需要写一个 dfs 来找到一个流量等于 $1$ 的路径就好了，不用写 bfs。复杂度 $O(n^3)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/96339207。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1748F】Circular Xor Reversal}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1748F。
+	
+	给定整数 $n\le 400$。  
+	初始，有一个编号从 $0$ 开始的长度为 $n$ 的环形序列 $a$，满足 $a_i=2^i$ 对任意整数 $i(0\leq i<n)$ 成立。  
+	
+	你的任务是将 $a$ 翻转，即使序列 $a$ 满足 $a_i=2^{n-i-1}$ 对任意整数 $i(0\leq i<n)$ 成立。  
+	为此，你可以进行下列操作至多 $2.5\times10^5$ 次：选定整数 $i$，将 $a_i$ 的值改为 $a_i\text{ xor }a_{(i+1)\bmod n}$。其中 $\text{xor}$ 表示按位异或运算。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	构造题的构造不是空穴来风，而是要分析出性质或者对过程有一个大致的构思，然后转化成构造。
+	
+	比如在这题中，我们可以令 $\forall i\in[0,\frac n2],a_i\leftarrow a_i\oplus a_{n-i}$，再令 $\forall i\in[\frac n2, n],a_i\leftarrow a_i\oplus a_{n-i}$，再令 $\forall i\in[0,\frac n2],a_i\leftarrow a_i\oplus a_{n-i}$ 即可完成交换过程。这来源于经典的三次异或交换两个整数。
+	
+	构造方法如下：
+	
+	\begin{center}
+		\begin{tabu}{c|c|c|c|c|c}
+			\tabucline[2pt]{-}
+			0 & 1 & 2 & 3 & 4 & 初始局面 \\\hline
+			01234 & 1234 & 234 & 34 & 4 & 必须得先把 4 传导到 1 \\\hline
+			01234 & 1 & 2 & 3 & 4 & 试试看 \\\hline
+			04 & 123 & 23 & 3 & 4 & 搞定 \\\hline
+			\tabucline[2pt]{-}
+		\end{tabu}
+	\end{center}
+
+	我们发现 123 23 3 这段恰好完成了下一次操作的第一步。所以总的操作次数只有 $1.5n^2$，可以通过。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/96339207。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1743G】Antifibonacci Cut}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1743G。
+	
+	定义 $01$ 串 $f$ 为斐波那契串，其中 $f_1=0,f_2 = 1,f_{n}=f_{n-1}+f_{n-2}$，其中 $+$ 代表拼接。再定义 $g(s)$ 表示把 $s$ 分割成若干个子串，并且没有任何子串是斐波那契串的方案数。现给出 $n(n\leq 3000)$ 个 $01$ 串 $s_1,s_2,...,s_n$（$|s_i|\leq 1000$），要求对于每个 $i$，计算 $g(s_1+s_2+...+s_i)\pmod {998244353}$。**内存限制为 $4\text M$**。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	这题挺松的，给人一种有点想法就能过的感觉，但是不要因此而觉得“剪枝”太少就不会做了。
+	
+	从前往后 dp 的时候，根据长度可以把从前向后的转移分成 $\log$ 类，分别用 queue 存下来，唯独的问题是如何判断一段是否是 fib 串，实际上这个的信息也都被转移的信息所包含了，只要从短到长接受转移即可。时间 $O(n\log n)$，空间 $O(\log n)$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/96280090。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1718E】Impressionism}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1718E。
+	
+	Burenka 有两张图片 $ a $ 和 $ b$ ，它们的大小可以表示为 $ n \times m $ 的像素组合。每幅画的每个像素都有一个颜色——表示为一个从 $0 $ 到 $2 \times 10^5$ 的数字，并且在两幅画的每一行或每一列中都没有重复的颜色，除了颜色 $0 $ 。
+	
+	Burenka 想把图片 $a$ 变成图片 $b$。为了实现她的目标，Burenka 可以执行 $2$ 操作之一：交换 $a$ 的任意两行或其任意两列。现在需要你来告诉 Burenka 该如何操作。操作次数限制是 $2\times 10^5$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	其实要找到一个行的置换和一个列的置换，使得两个矩阵相同。
+	
+	我们首先给行和列分别划分等价类，算出每行的哈希值，然后给每个数都异或上行的哈希值；然后再求出列的哈希值，并给每个数异或上列的哈希值，递归下去，进行 $O(\min(n,m))$ 次。
+	
+	然后一写发现样例过不去，实际上是因为这个等价类是比较宽的等价类；我们只要给每行的同一类的数再加上个第二维的权值，然后再跑一次列的等价类划分就能保证置换唯一。$O((nm)^{1.5})$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/96254764。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1738G】Anti-Increasing Addicts}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1738G。
+	
+	有 $n\times n$ 的方格，给定每个方格可否被删除。
+	
+	给定整数 $k$ ，要求删除 $(n-k+1)^2$ 个方格，使得不存在 $k+1$ 个严格单调递增（横纵坐标均严格单调递增）的方格未被删除或证明其无解。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	也就是 DAG 的最长路小于等于 $k$；为了尽可能节约删除格子的数量，可以把 DAG 的每条链都尽可能延长——我们发现 $k$ 条不交反链的长度和最大也只能达到恰好 $n^2-(n-k+1)^2$！
+	
+	问题也就转化为找到 $(n,1)$ 到 $(1,n)$、$(n,2)$ 到 $(2,n)$，直到 $(n,k)$ 到 $(k,n)$ 的不交折线，覆盖所有不能删除的点。对每列记一个栈，然后贪心地找折线就好；注意贪心的时候折线要避免经过下界（给剩下的折线留够空间，也就是不能到一个包含 $(n,n)$ 的正方形内）。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/96213176。
+	
+	% -----------------------------------------------------------------------------------
+	
+	\section*{【CF1750G】Doping}
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题目描述】}
+	
+	https://www.luogu.com.cn/problem/CF1750G。
+	
+	给定长度为 $n$ 的排列 $p$，要对于 $k=1,2,3,\cdots,n$ 求出，有多少个长度为 $n$ 的排列 $p'$ 满足 $p'$ 字典序比 $p$ 小，且 $f(p')=k$，其中 $f(a)$ 表示 $a$ 最少可以划分成多少个区间，使得每个区间中的元素都是公差为 $1$ 的等差数列。答案对 $m$ 取模，$m$ 不一定是质数。$n\le 2000$。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【题解】}
+	
+	惯例枚举从哪一位开始小于，剩下的都是 free。然后枚举有多少个 free 的它们是紧跟着前一个的；注意到有一些位置可能是不能紧跟着的。所以我们在枚举 free 前一位的值的时候顺便维护一个二元组表示之前已经经过的紧贴的数量和 free 的可以选作紧贴的数量，这个二元组最多只有 $3$ 种，对于每组都跑一遍就行。
+	
+	为了避免多次二项式反演，可以枚举前面选了多少个。实测总复杂度 $O(n^3)$ 也可以通过（最大的点 202ms）。
+	
+	\phantomsection
+	\addcontentsline{toc}{subsection}{}
+	\subsection*{【提交记录】}
+	
+	https://www.luogu.com.cn/record/96209130。
+	
+	% -----------------------------------------------------------------------------------
+	
+\end{document}
+
+
