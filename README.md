@@ -67,4 +67,4 @@
 
 ### 翻译成果：
 
-[STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY REPORT of ANALYTIC COMBINATORICS.pdf)
+[STUDY REPORT of ANALYTIC COMBINATORICS.pdf](https://lllpoiuy.github.io/Lsh-WeBlog/STUDY%20REPORT%20of%20ANALYTIC%20COMBINATORICS.pdf)
