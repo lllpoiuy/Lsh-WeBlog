@@ -22,7 +22,7 @@ Website: [https://lllpoiuy.github.io/Lsh-WeBlog/](https://lllpoiuy.github.io/Lsh
 
 I got my high school degree in [Affiliated High School of Fujian Normal University](https://sdfz.fjnu.edu.cn/) in 2024.
 
-Before 2023, I was an Olympiad Informatics Competitor, studying and researching with [chen_03](https://www.luogu.com/user/154520#article), [18Michael](https://www.cnblogs.com/18Michael). In the short but exciting 2-year competitive career, I have won gold medals in APIO(Asia-Pacific Informatics Olympiad), NOIWC(National Olympic Winter Camp in Informatics), and a silver medal in NOI(National Olympiad of Informatics). What's more significant, during the competitive career, I'm fortunate to have made lots of close friends, who have passion and talent in CS/math/...
+Before 2023, I was an Olympiad Informatics Competitor, studying and researching with [chen_03](https://www.luogu.com/user/154520#article), [18Michael](https://www.cnblogs.com/18Michael). In the short but exciting 2-year competitive career, I have won gold medals in APIO(Asia-Pacific Informatics Olympiad), NOIWC(National Olympic Winter Camp in Informatics), and a silver medal in NOI(National Olympiad of Informatics). What's more significant, during the competitive career, I'm fortunate to have made lots of close friends, who come from all parts of China and have passion and talent in CS/math/...
 
 In August 2024, I became a student in [Tsinghua University](https://www.tsinghua.edu.cn/), and I'm willing to become a researcher, a scientist, and a person who benefit society in the future.
 
