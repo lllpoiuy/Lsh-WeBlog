@@ -1,3 +1,5 @@
+This is my blog from the period of my information science competitions (2020-2023), which is no longer maintained
+
 # 博客文章目录
 
 | 2023 年国赛前训练时期                                                 |                                                              |                                                              |                                                              |
